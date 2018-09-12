@@ -20,11 +20,13 @@ module Clock_TB ();
         .timeout    ( out2s )       );
 
     initial begin
-        #0      clk         = 0;
+        #0      clk         = 0;    // initialize all test modules
         #0      enable1s    = 0;
         #0      enable2s    = 0;
-        #157    enable1s    = 1;
-        #96     enable2s    = 1;
+        #157    enable1s    = 1;    // start 1s delay first
+        #230    enable2s    = 1;    // start 2s delay later, expecting a shift in output result
+        #2900   enable1s    = 0;    // re-enable 1s delay
+        #1      enable1s    = 1;
     end
 
     always @ ( * ) #10 clk <= ~clk;

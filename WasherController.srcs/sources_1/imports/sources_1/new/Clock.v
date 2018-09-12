@@ -15,13 +15,21 @@ module ClockSignal1S
         counter = 0;
     end
 
+    // clear counter state on all changes if `enable` is not given
+    always @ ( * ) begin
+        if ( !enable ) begin
+            counter <= 0;
+            clkout  <= 0;
+        end
+    end
+
     always @ ( posedge clk ) begin
         if ( !enable ) begin
             counter <= 0;
-            clkout <= 0;
+            clkout  <= 0;
         end else if ( counter == __half_sec_scale ) begin
-            clkout <= ~clkout;
             counter <= 0;
+            clkout  <= ~clkout;
         end else begin
             counter <= counter + 1;
         end
@@ -44,7 +52,8 @@ module DelaySignalNS
         .enable ( enable )  ,
         .clk    ( clkdev )  ,
         .clkout ( clk1hz )  );
-    
+
+    // clear counter state on all changes if `enable` is not given
     always @ ( * ) begin
         if ( !enable ) begin
             counter <= 0;

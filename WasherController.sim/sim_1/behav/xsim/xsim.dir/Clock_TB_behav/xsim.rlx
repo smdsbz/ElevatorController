@@ -1,11 +1,11 @@
 
 { 
-    crc :  3499594773450982697  , 
+    crc :  3592408665791052681  , 
     ccp_crc :  0  , 
-    cmdline : " -wto 62428be122ac4f75a6942345dd8eb08b --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Clock_TB_behav xil_defaultlib.Clock_TB xil_defaultlib.glbl" , 
+    cmdline : " -wto 62428be122ac4f75a6942345dd8eb08b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Clock_TB_behav xil_defaultlib.Clock_TB xil_defaultlib.glbl" , 
     buildDate : "Jun 14 2018" , 
-    buildTime : "20:07:38" , 
-    linkCmd : "/usr/bin/gcc -Wa,-W  -O -fPIC  -m64  -Wl,--unresolved-symbols=ignore-all  -o \"xsim.dir/Clock_TB_behav/xsimk\"   \"xsim.dir/Clock_TB_behav/obj/xsim_0.lnx64.o\" \"xsim.dir/Clock_TB_behav/obj/xsim_1.lnx64.o\" \"/home/smdsbz/Programs/Xilinx/Vivado/2018.2/lib/lnx64.o/librdi_simulator_kernel.so\"  \"/home/smdsbz/Programs/Xilinx/Vivado/2018.2/lib/lnx64.o/librdi_simbridge_kernel.so\"" , 
+    buildTime : "20:41:02" , 
+    linkCmd : "C:\\Xilinx\\Vivado\\2018.2\\data\\..\\tps\\mingw\\6.2.0\\win64.o\\nt\\bin\\gcc.exe -Wa,-W  -O -Wl,--stack,104857600 -o \"xsim.dir/Clock_TB_behav/xsimk.exe\"   \"xsim.dir/Clock_TB_behav/obj/xsim_0.win64.obj\" \"xsim.dir/Clock_TB_behav/obj/xsim_1.win64.obj\" \"C:\\Xilinx\\Vivado\\2018.2\\lib\\win64.o\\\\librdi_simulator_kernel.dll\"  \"C:\\Xilinx\\Vivado\\2018.2\\lib\\win64.o\\\\librdi_simbridge_kernel.dll\"" , 
     aggregate_nets : 
     [ 
     ] 
