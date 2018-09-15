@@ -5,7 +5,7 @@ module SevenSegDecoder
 (   input       [3:0]   data        ,   // 4-bit hex number
     output reg  [7:0]   segments    );  // { a, b, c, d, e, f, g, dp }
     
-    always @ ( data ) begin
+    always @ ( * ) begin
         case ( data )
                                // order: { abc_defg_dp }
             4'h0:       segments    <=  8'b000_0001_1;
@@ -29,3 +29,39 @@ module SevenSegDecoder
     end
     
 endmodule
+
+
+module DisplayInterfaceDriver
+#(  parameter   data_width      =   8   ,
+    parameter   _reserved_plc   =   6   ,   // righter most 2 digits
+    parameter   _total_rem_plc  =   4   ,   // lefter 2 digits
+    parameter   _proc_rem_plc   =   2   ,   // righter 2 digits
+    parameter   _water_lv_plc   =   0   )   // righter most 2 digit
+(   input   [ 2 : 0 ]   data_plc    );
+
+
+endmodule
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
