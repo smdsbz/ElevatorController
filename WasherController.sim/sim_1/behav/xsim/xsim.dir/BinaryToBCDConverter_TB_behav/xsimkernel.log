@@ -2,3 +2,6 @@ Running: xsim.dir/BinaryToBCDConverter_TB_behav/xsimk.exe -simmode gui -wdb Bina
 Design successfully loaded
 Design Loading Memory Usage: 4984 KB (Peak: 4984 KB)
 Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 5580 KB (Peak: 5580 KB)
+Simulation CPU Usage: 15 ms
