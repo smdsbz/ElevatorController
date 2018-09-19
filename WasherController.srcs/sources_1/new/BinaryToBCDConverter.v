@@ -7,7 +7,7 @@ module BinaryToBCDConverter
     output reg  [ 3 : 0 ]   lower_byte  );  // converted value (lower 4-bit)
 
     reg [ 15 : 0 ]   __temp;    // { tens[3:0], ones[3:0], data_in[7:0] }
-    
+
     // TODO: optimize the `for` loop!!!
     integer i;  // loop var
     always @ ( * ) begin

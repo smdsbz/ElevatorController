@@ -87,7 +87,8 @@ endmodule
 
 
 module ElevatorFSM
-#(  parameter   n_floors    = 8 )
+#(  parameter   n_floors            = 8             ,
+    parameter   __half_sec_scale    = 49_999_999    )
 (   input                   clk         ,   // device clock
     // User Control
     input                   power       ,   // [switch] power signal (release on HIGH)
@@ -142,7 +143,7 @@ module ElevatorFSM
         .more_down  ( more_user_below )         );
 
     wire    delay_timeout;
-    DelaySignalNS #(1) FSM_DelayMod (
+    DelaySignalNS #(5, __half_sec_scale) FSM_DelayMod (
         .enable     ( delay_enable )    ,
         .clkdev     ( clk )             ,
         .timeout    ( delay_timeout )   );

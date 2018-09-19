@@ -8,7 +8,7 @@ module ClockSignal1S
     output reg      clkout  );  // output signal (start on LOW)
 
     reg [31:0]      counter;
-    
+
     // HACK: easy for simulation, won't matter circuit behaviour
     initial begin
         clkout = 0;
@@ -47,7 +47,7 @@ module DelaySignalNS
     output  reg     timeout );  // output interrupt signal
 
     reg [3:0]   counter;
-    
+
     ClockSignal1S #(__half_sec_scale) __PrivateClock (
         .enable ( enable )  ,
         .clk    ( clkdev )  ,

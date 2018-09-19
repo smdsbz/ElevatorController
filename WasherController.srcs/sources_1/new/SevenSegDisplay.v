@@ -4,7 +4,7 @@
 module SevenSegDecoder
 (   input       [3:0]   data        ,   // 4-bit hex number
     output reg  [7:0]   segments    );  // { a, b, c, d, e, f, g, dp }
-    
+
     always @ ( * ) begin
         case ( data )
                                // order: { abc_defg_dp }
@@ -27,18 +27,96 @@ module SevenSegDecoder
             default:    segments    <=  8'b111_1111_1;  // otherwise, all black
         endcase
     end
-    
+
 endmodule
 
 
 module DisplayInterfaceDriver
-#(  parameter   data_width      =   8   ,
-    parameter   _reserved_plc   =   6   ,   // righter most 2 digits
-    parameter   _total_rem_plc  =   4   ,   // lefter 2 digits
-    parameter   _proc_rem_plc   =   2   ,   // righter 2 digits
-    parameter   _water_lv_plc   =   0   )   // righter most 2 digit
-(   input   [ 2 : 0 ]   data_plc    );
+#(  parameter   data_width      = 8 ,
+    parameter   _reserved_plc   = 6 ,
+    parameter   _curr_floor_plc = 4 ,
+    parameter   _move_res_plc   = 2 ,
+    parameter   _door_ind_plc   = 0 )
+(   input                       power           ,   // power input
+    input                       clk             ,   // device clock
+    input       [ 3 : 0 ]       curr_floor      ,   // floor data
+    input       [ 3 : 0 ]       move_res_time   ,   // move remain time
+    input                       door            ,   // door open indication
+    output reg  [ 7 : 0 ]       segments        ,   // 7-segment
+    output reg  [ 3 : 0 ]       ansel           );  // active on LOW
 
+    always @ ( power ) begin
+        if ( !power ) begin
+            ansel   <=  8'b1111_1111;
+        end else begin
+            ansel   <=  8'b1111_1110;
+        end
+    end
+
+    always @ ( posedge clk ) begin
+        ansel   <= { ansel[6:0], ansel[7] };
+    end
+
+    // Helper block
+    wire    [ 3 : 0 ]   __bcd_data  [ 3 : 0 ];
+    BinaryToBCDConverter DID_FloorConv (
+        .data_in        ( curr_floor )      ,
+        .higher_byte    ( __bcd_data[3] )   ,
+        .lower_byte     ( __bcd_data[2] )   );
+    BinaryToBCDConverter DID_MoveResConv (
+        .data_in        ( move_res_time )   ,
+        .higher_byte    ( __bcd_data[1] )   ,
+        .lower_byte     ( __bcd_data[0] )   );
+
+    wire    [ 7 : 0 ]   __seg_data  [ 7 : 0 ];
+    assign  __seg_data[7]   = 8'b1111_1111;
+    assign  __seg_data[6]   = 8'b1111_1111;
+    assign  __seg_data[1]   = 8'b1111_1111;
+    assign  __seg_data[0]   = 8'b1111_1111;
+    integer     __plc;
+    always @ ( * ) begin
+        for ( __plc = 0; __plc < 8; __plc = __plc + 1 ) begin
+            if ( __plc >= 2 || __plc <= 5 ) begin
+                SevenSegDecoder (
+                    .data       ( __bcd_data[__plc - 2] )   ,
+                    .segments   ( __seg_data[__plc] )       );
+            end else begin
+                /* pass */
+            end
+        end
+    end
+
+    always @ ( * ) begin
+        case ( ansel )
+            8'b1111_1110: begin
+                segments    = __seg_data[0];
+            end
+            8'b1111_1101: begin
+                segments    = __seg_data[1];
+            end
+            8'b1111_1011: begin
+                segments    = __seg_data[2];
+            end
+            8'b1111_0111: begin
+                segments    = __seg_data[3];
+            end
+            8'b1110_1111: begin
+                segments    = __seg_data[4];
+            end
+            8'b1101_1111: begin
+                segments    = __seg_data[5];
+            end
+            8'b1011_1111: begin
+                segments    = __seg_data[6];
+            end
+            8'b0111_1111: begin
+                segments    = __seg_data[7];
+            end
+            default: begin
+                segments    = 8'b111_1111_1;
+            end
+        endcase
+    end
 
 endmodule
 
