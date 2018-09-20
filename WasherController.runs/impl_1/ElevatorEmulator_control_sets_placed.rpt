@@ -1,0 +1,86 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
+| Date         : Thu Sep 20 18:03:26 2018
+| Host         : DESKTOP-01D8GON running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file ElevatorEmulator_control_sets_placed.rpt
+| Design       : ElevatorEmulator
+| Device       : xc7a100t
+---------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    18 |
+| Unused register locations in slices containing registers |    66 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      2 |            8 |
+|      6 |            1 |
+|      8 |            3 |
+|     14 |            1 |
+|    16+ |            5 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              68 |           19 |
+| No           | No                    | Yes                    |               2 |            1 |
+| No           | Yes                   | No                     |             240 |           39 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              16 |            2 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------------------------------------------+----------------------------------------------+---------------------------------------------+------------------+----------------+
+|                    Clock Signal                    |                 Enable Signal                |               Set/Reset Signal              | Slice Load Count | Bel Load Count |
++----------------------------------------------------+----------------------------------------------+---------------------------------------------+------------------+----------------+
+|  nolabel_line100/__PrivateClock/CLK                |                                              |                                             |                1 |              2 |
+|  EE_FSMMod/FSM_DelayMod/__PrivateClock/timeout_reg |                                              |                                             |                1 |              2 |
+|  EE_FSMMod/current_state_reg[0]_1                  |                                              |                                             |                1 |              2 |
+|  EE_FSMMod/move_down                               |                                              | EE_FSMMod/move_up                           |                1 |              2 |
+|  EE_FSMMod/moving0_out                             |                                              |                                             |                1 |              2 |
+|  EE_FSMMod/current_state_reg[0]_2[0]               |                                              |                                             |                1 |              2 |
+|  EE_FileMod/up_requests_reg[0]_i_2_n_0             |                                              |                                             |                1 |              2 |
+|  sw_IBUF_BUFG[2]                                   |                                              |                                             |                1 |              2 |
+|  EE_FSMMod/door_ctl_reg_i_2_n_0                    |                                              |                                             |                1 |              6 |
+|  nolabel_line100/__PrivateClock/CLK                | nolabel_line100/counter[3]_i_1_n_0           | nolabel_line100/__PrivateClock/SR[0]        |                1 |              8 |
+|  EE_FSMMod/FSM_DelayMod/__PrivateClock/timeout_reg | EE_FSMMod/FSM_DelayMod/counter[3]_i_1__0_n_0 | EE_FSMMod/FSM_DelayMod/__PrivateClock/SR[0] |                1 |              8 |
+|  clk_IBUF_BUFG                                     |                                              |                                             |                3 |              8 |
+|  sw_IBUF_BUFG[2]                                   |                                              | EE_DispMod/segments_reg[7]_i_2_n_0          |                2 |             14 |
+|  __EE_SlowerClock/ansel_reg[7]                     |                                              | EE_DispMod/segments_reg[7]_i_2_n_0          |                4 |             32 |
+|  EE_FSMMod/E[0]                                    |                                              |                                             |                8 |             40 |
+|  clk_IBUF_BUFG                                     |                                              | __EE_SlowerClock/clkout                     |                8 |             62 |
+|  clk_IBUF_BUFG                                     |                                              | nolabel_line100/__PrivateClock/SR[0]        |               13 |             66 |
+|  clk_IBUF_BUFG                                     |                                              | EE_FSMMod/FSM_DelayMod/__PrivateClock/SR[0] |               12 |             66 |
++----------------------------------------------------+----------------------------------------------+---------------------------------------------+------------------+----------------+
+
+

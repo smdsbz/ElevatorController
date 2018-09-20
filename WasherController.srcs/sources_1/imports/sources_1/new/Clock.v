@@ -15,14 +15,6 @@ module ClockSignal1S
         counter = 0;
     end
 
-    // clear counter state on all changes if `enable` is not given
-    always @ ( * ) begin
-        if ( !enable ) begin
-            counter <= 0;
-            clkout  <= 0;
-        end
-    end
-
     always @ ( posedge clk ) begin
         if ( !enable ) begin
             counter <= 0;
@@ -41,35 +33,34 @@ endmodule
 module DelaySignalNS
 #(  parameter   n_sec               = 1             ,   // seconds per period, SHOULD START ON 1!!!
     parameter   __half_sec_scale    = 49_999_999    )   // real-world timescale
-(   input           enable  ,   // enabled on HIGH
-    input           clkdev  ,   // device signal
-    output          clk1hz  ,   // private clock
-    output  reg     timeout );  // output interrupt signal
+(   input                   enable      ,   // enabled on HIGH
+    input                   clkdev      ,   // device signal
+    output                  clk1hz      ,   // private clock
+    output wire [ 3 : 0 ]   __counter   ,
+    output reg              timeout     );  // output interrupt signal
 
     reg [3:0]   counter;
+    assign  __counter   = counter;
 
     ClockSignal1S #(__half_sec_scale) __PrivateClock (
         .enable ( enable )  ,
         .clk    ( clkdev )  ,
         .clkout ( clk1hz )  );
 
-    // clear counter state on all changes if `enable` is not given
-    always @ ( * ) begin
+    always @ ( posedge clk1hz ) begin
         if ( !enable ) begin
             counter <= 0;
             timeout <= 0;
-        end
-    end
-
-    always @ ( posedge clk1hz ) begin
-        if ( timeout ) begin
-            // stay in HIGH after triggered timer output
-            /* pass */
-        end else if ( counter == (n_sec - 1) ) begin
-            timeout <= ~timeout;
-            counter <= 0;
         end else begin
-            counter <= counter + 1;
+            if ( timeout ) begin
+                // stay in HIGH after triggered timer output
+                /* pass */
+            end else if ( counter == (n_sec - 1) ) begin
+                timeout <= ~timeout;
+                counter <= 0;
+            end else begin
+                counter <= counter + 1;
+            end
         end
     end
 
