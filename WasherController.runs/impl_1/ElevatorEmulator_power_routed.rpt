@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date             : Thu Sep 20 18:03:57 2018
+| Date             : Fri Sep 21 11:42:03 2018
 | Host             : DESKTOP-01D8GON running 64-bit major release  (build 9200)
 | Command          : report_power -file ElevatorEmulator_power_routed.rpt -pb ElevatorEmulator_power_summary_routed.pb -rpx ElevatorEmulator_power_routed.rpx
 | Design           : ElevatorEmulator
@@ -33,7 +33,7 @@ Table of Contents
 | Total On-Chip Power (W)  | 0.312        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.214        |
+| Dynamic (W)              | 0.215        |
 | Device Static (W)        | 0.098        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 83.6         |
@@ -53,13 +53,13 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.003 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      402 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      168 |     63400 |            0.26 |
+| Slice Logic    |     0.001 |      454 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      193 |     63400 |            0.30 |
 |   CARRY4       |    <0.001 |       24 |     15850 |            0.15 |
-|   Register     |    <0.001 |      163 |    126800 |            0.13 |
-|   Others       |     0.000 |       22 |       --- |             --- |
+|   Register     |    <0.001 |      162 |    126800 |            0.13 |
+|   Others       |     0.000 |       17 |       --- |             --- |
 |   BUFG         |     0.000 |        1 |        32 |            3.13 |
-| Signals        |    <0.001 |      341 |       --- |             --- |
+| Signals        |    <0.001 |      412 |       --- |             --- |
 | I/O            |     0.210 |       51 |       210 |           24.29 |
 | Static Power   |     0.098 |          |           |                 |
 | Total          |     0.312 |          |           |                 |
@@ -72,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.020 |       0.004 |      0.016 |
+| Vccint    |       1.000 |     0.020 |       0.005 |      0.016 |
 | Vccaux    |       1.800 |     0.026 |       0.008 |      0.018 |
 | Vcco33    |       3.300 |     0.063 |       0.059 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -138,18 +138,16 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+----------------------+-----------+
-| Name                 | Power (W) |
-+----------------------+-----------+
-| ElevatorEmulator     |     0.214 |
-|   EE_DispMod         |    <0.001 |
-|   EE_FSMMod          |    <0.001 |
-|     FSM_DelayMod     |    <0.001 |
-|       __PrivateClock |    <0.001 |
-|   EE_FileMod         |    <0.001 |
-|   __EE_SlowerClock   |    <0.001 |
-|   nolabel_line100    |    <0.001 |
-|     __PrivateClock   |    <0.001 |
-+----------------------+-----------+
++--------------------+-----------+
+| Name               | Power (W) |
++--------------------+-----------+
+| ElevatorEmulator   |     0.215 |
+|   EE_DispMod       |    <0.001 |
+|   EE_FSMMod        |    <0.001 |
+|     FSM_DelayMod   |    <0.001 |
+|   EE_FileMod       |    <0.001 |
+|   __EE_SlowerClock |    <0.001 |
+|   nolabel_line92   |    <0.001 |
++--------------------+-----------+
 
 

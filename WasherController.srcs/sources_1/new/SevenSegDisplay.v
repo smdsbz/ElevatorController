@@ -36,6 +36,8 @@ module DisplayInterfaceDriver
     input                       clk             ,   // device clock
     input       [ 3 : 0 ]       curr_floor      ,   // floor data
     input       [ 3 : 0 ]       move_res_time   ,   // move remain time
+    // DEBUG
+    input       [ 3 : 0 ]       __state         ,
     output reg  [ 7 : 0 ]       segments        ,   // 7-segment
     output reg  [ 7 : 0 ]       ansel           );  // active on LOW
 
@@ -45,7 +47,7 @@ module DisplayInterfaceDriver
 
     always @ ( posedge clk ) begin
         if ( !power ) begin
-            ansel   <= 8'b1111_1110;
+            ansel   <= 8'b0111_1111;
         end else begin
             ansel   <= { ansel[0], ansel[7:1] };
         end
@@ -65,7 +67,10 @@ module DisplayInterfaceDriver
         .lower_byte     ( __bcd_data[0] )           );
 
     wire    [ 7 : 0 ]   __seg_data  [ 7 : 0 ];
-    assign  __seg_data[7]   = 8'b111_1111_1;
+    // assign  __seg_data[7]   = 8'b111_1111_1;
+    //////// DEBUG ////////
+    assign  __seg_data[7]   = { ~(4'b1000 >> __state), 4'b1111 };
+    ///////////////////////
     assign  __seg_data[6]   = 8'b111_1111_1;
     assign  __seg_data[1]   = 8'b111_1111_1;
     assign  __seg_data[0]   = 8'b111_1111_1;

@@ -16,10 +16,10 @@ module ElevatorEmulator
     output wire             dp          ,
     output wire [ 7 : 0 ]   an          ,
     output wire [ 15 : 0 ]  led         ,
-    output wire             RGB1_Red    ,
+    output wire             RGB1_Red    ,   // door closed / open indication
     output wire             RGB1_Green  ,
-    output wire             RGB2_Blue   ,
-    output wire             RGB2_Green  );
+    output wire             RGB2_Green  ,   // moving down / up indication
+    output wire             RGB2_Blue   );
 
     genvar  __plc;
 
@@ -73,7 +73,7 @@ module ElevatorEmulator
     endgenerate
 
     // Internal Wires
-    reg                 curr_floor;
+    reg     [ 3 : 0 ]   curr_floor;
     wire    [ 3 : 0 ]   move_res_time;
     wire                stop_curr, stop_up, stop_down;
     wire                more_up, more_down;
@@ -89,15 +89,7 @@ module ElevatorEmulator
     assign  RGB2_Blue   = moving & move_up;
     assign  RGB2_Green  = moving & move_down;
 
-    always @ ( posedge move_up or posedge move_down ) begin
-        if ( move_up ) begin
-            last_move   <= 1;
-        end else begin
-            last_move   <= 0;
-        end
-    end
-
-    DelaySignalNS #(10) (
+    DelaySignalNS #(12) (
         .enable         ( move_delay_enable )   ,
         .clkdev         ( clk )                 ,
         .__counter      ( move_res_time )       ,
@@ -106,7 +98,9 @@ module ElevatorEmulator
     // Motor Emulator FSM (compact implementation)
     always @ ( * ) begin
         if ( !power ) begin
-            curr_floor  = (curr_floor < 1 || curr_floor > 8) ? 1 : curr_floor;
+            curr_floor          = (curr_floor == 0 || curr_floor > 8) ? 1 : curr_floor;
+            last_move           = 1;
+            move_delay_enable   = 0;
         end else begin
             if ( !moving ) begin
                 move_delay_enable   = 0;
@@ -118,12 +112,15 @@ module ElevatorEmulator
                 end
             end else begin
                 move_delay_enable   = 1;
+                if ( move_up ) begin
+                    last_move   = 1;
+                end else begin
+                    last_move   = 0;
+                end
                 if ( move_delay_timeout ) begin     // arriving
                     if ( move_up ) begin
-                        // curr_floor  = (curr_floor != 8) ? curr_floor + 1, 8;
-                        curr_floor  = curr_floor + 1;   // HACK: be confident!!!
+                        curr_floor  = curr_floor + 1;
                     end else if ( move_down ) begin
-                        // curr_floor  = (curr_floor != 1) ? curr_floor - 1, 1;
                         curr_floor  = curr_floor - 1;
                     end else begin
                         // NOTE: moving without request from FSM, should be impossible!!!
@@ -135,18 +132,20 @@ module ElevatorEmulator
                     /* pass */
                 end
             end     // end moving
-        end
+        end     // end power
     end
 
     /******* Sub-Modules *******/
 
-    wire    __slower_clk;
+    wire                __slower_clk;
+    wire    [ 3 : 0 ]   __FSM_state;
     ClockSignal1S #(49_999) __EE_SlowerClock (1, clk, __slower_clk);
     DisplayInterfaceDriver EE_DispMod (
         .power          ( power )           ,
         .clk            ( __slower_clk )    ,
         .curr_floor     ( curr_floor )      ,
         .move_res_time  ( move_res_time )   ,
+        .__state        ( __FSM_state )     ,
         .segments       ( { seg[0], seg[1], seg[2], seg[3], seg[4], seg[5], seg[6], dp } )  ,
         .ansel          ( an )              );
 
@@ -163,17 +162,18 @@ module ElevatorEmulator
         .stop_down      ( stop_down )   ,
         .more_up        ( more_up )     ,
         .more_down      ( more_down )   ,
-        // Emulator Inpu
+        // Emulator Input
         .position       ( curr_floor )  ,
         .moving         ( moving )      ,
         .last_move      ( last_move )   ,
         // File Outpu
         .open_up        ( open_up )     ,
         .open_down      ( open_down )   ,
-        // Emulator Outpu
+        // Emulator Output
         .move_up        ( move_up )     ,
         .move_down      ( move_down )   ,
-        .door_ctl       ( door_ind )    );
+        .door_ctl       ( door_ind )    ,
+        .__state        ( __FSM_state ) );
 
     ElevatorFiles EE_FileMod (
         // System Input

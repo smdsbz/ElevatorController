@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Thu Sep 20 18:03:56 2018
+| Date         : Fri Sep 21 11:42:02 2018
 | Host         : DESKTOP-01D8GON running 64-bit major release  (build 9200)
 | Command      : report_methodology -file ElevatorEmulator_methodology_drc_routed.rpt -pb ElevatorEmulator_methodology_drc_routed.pb -rpx ElevatorEmulator_methodology_drc_routed.rpx
 | Design       : ElevatorEmulator
@@ -23,13 +23,14 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 80
+             Violations found: 74
 +-----------+----------+-------------------------------+------------+
 | Rule      | Severity | Description                   | Violations |
 +-----------+----------+-------------------------------+------------+
-| TIMING-17 | Warning  | Non-clocked sequential cell   | 27         |
-| TIMING-18 | Warning  | Missing input or output delay | 18         |
-| TIMING-20 | Warning  | Non-clocked latch             | 35         |
+| TIMING-17 | Warning  | Non-clocked sequential cell   | 16         |
+| TIMING-18 | Warning  | Missing input or output delay | 20         |
+| TIMING-20 | Warning  | Non-clocked latch             | 37         |
+| TIMING-23 | Warning  | Combinational loop found      | 1          |
 +-----------+----------+-------------------------------+------------+
 
 2. REPORT DETAILS
@@ -112,61 +113,6 @@ Related violations: <none>
 TIMING-17#16 Warning
 Non-clocked sequential cell  
 The clock pin EE_DispMod/ansel_reg[7]_lopt_replica/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#17 Warning
-Non-clocked sequential cell  
-The clock pin EE_FSMMod/FSM_DelayMod/counter_reg[0]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#18 Warning
-Non-clocked sequential cell  
-The clock pin EE_FSMMod/FSM_DelayMod/counter_reg[1]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#19 Warning
-Non-clocked sequential cell  
-The clock pin EE_FSMMod/FSM_DelayMod/counter_reg[2]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#20 Warning
-Non-clocked sequential cell  
-The clock pin EE_FSMMod/FSM_DelayMod/counter_reg[3]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#21 Warning
-Non-clocked sequential cell  
-The clock pin EE_FSMMod/FSM_DelayMod/timeout_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#22 Warning
-Non-clocked sequential cell  
-The clock pin last_move_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#23 Warning
-Non-clocked sequential cell  
-The clock pin nolabel_line100/counter_reg[0]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#24 Warning
-Non-clocked sequential cell  
-The clock pin nolabel_line100/counter_reg[1]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#25 Warning
-Non-clocked sequential cell  
-The clock pin nolabel_line100/counter_reg[2]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#26 Warning
-Non-clocked sequential cell  
-The clock pin nolabel_line100/counter_reg[3]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#27 Warning
-Non-clocked sequential cell  
-The clock pin nolabel_line100/timeout_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-18#1 Warning
@@ -257,6 +203,16 @@ Related violations: <none>
 TIMING-18#18 Warning
 Missing input or output delay  
 An input delay is missing on sw[9] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#19 Warning
+Missing input or output delay  
+An output delay is missing on RGB2_Blue relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#20 Warning
+Missing input or output delay  
+An output delay is missing on RGB2_Green relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-20#1 Warning
@@ -421,17 +377,32 @@ Related violations: <none>
 
 TIMING-20#33 Warning
 Non-clocked latch  
-The latch curr_floor_reg cannot be properly analyzed as its control pin curr_floor_reg/G is not reached by a timing clock
+The latch curr_floor_reg[0] cannot be properly analyzed as its control pin curr_floor_reg[0]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#34 Warning
 Non-clocked latch  
-The latch move_delay_enable_reg cannot be properly analyzed as its control pin move_delay_enable_reg/G is not reached by a timing clock
+The latch curr_floor_reg[1] cannot be properly analyzed as its control pin curr_floor_reg[1]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#35 Warning
 Non-clocked latch  
-The latch moving_reg cannot be properly analyzed as its control pin moving_reg/G is not reached by a timing clock
+The latch curr_floor_reg[2] cannot be properly analyzed as its control pin curr_floor_reg[2]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#36 Warning
+Non-clocked latch  
+The latch curr_floor_reg[3] cannot be properly analyzed as its control pin curr_floor_reg[3]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#37 Warning
+Non-clocked latch  
+The latch last_move_reg cannot be properly analyzed as its control pin last_move_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-23#1 Warning
+Combinational loop found  
+A timing loop has been detected on a combinational path. A timing arc has been disabled between EE_FSMMod/last_move_reg_i_1/I2 and EE_FSMMod/last_move_reg_i_1/O to disable the timing loop
 Related violations: <none>
 
 

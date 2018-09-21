@@ -26,9 +26,9 @@ module Clock_TB ();
         #157    enable1s    = 1;    // start 1s delay first
         #230    enable2s    = 1;    // start 2s delay later, expecting a shift in output result
         #2900   enable1s    = 0;    // re-enable 1s delay
-        #1      enable1s    = 1;
+        #40     enable1s    = 1;
     end
 
-    always @ ( * ) #10 clk <= ~clk;
+    always @ ( * ) #5   clk <= ~clk;
 
 endmodule

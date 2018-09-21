@@ -39,14 +39,6 @@ module ElevatorFiles
     assign  __up_req    = up_requests;
     assign  __down_req  = down_requests;
 
-
-    // // reset block
-    // always @ ( posedge reset ) begin
-    //     stop_requests   <= 0;
-    //     up_requests     <= 0;
-    //     down_requests   <= 0;
-    // end
-
     // 1-indexed `position` to 0-indexed `offset`
     wire    [ 4 : 0 ]   offset;
     assign  offset  = position - 1;
@@ -57,18 +49,9 @@ module ElevatorFiles
         if ( !reset ) begin
             /* pass */
         end else begin
-            if ( open_up || open_down ) begin
-                stop_requests[offset]   = 0;
-                if ( open_up ) begin
-                    up_requests[offset] = 0;
-                end else begin
-                    down_requests[offset]   = 0;
-                end
-            end else begin
-                stop_requests   = stop_requests | stop_buttons;
-                up_requests     = up_requests | up_buttons;
-                down_requests   = down_requests | down_buttons;
-            end
+            stop_requests   = ( stop_requests | stop_buttons )  & ~( 8'b1 << offset );
+            up_requests     = ( up_requests | up_buttons )      & ~( { 7'b0, open_up } << offset );
+            down_requests   = ( down_requests | down_buttons )  & ~( { 7'b0, open_down } << offset );
         end
     end
 
