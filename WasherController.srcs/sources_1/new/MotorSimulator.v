@@ -41,6 +41,11 @@ module MotorSimulator
         end else begin
             next_position   <= position - 1;
         end
+        // end else if ( move_down ) begin
+        //     next_position   <= position - 1;
+        // end else begin      // NOTE: redundant design
+        //     next_position   <= position;
+        // end
     end
 
     always @ ( posedge clk ) begin
@@ -52,7 +57,8 @@ module MotorSimulator
             end
         end else begin  // is powered
             if ( !moving ) begin
-                if ( next_position != position ) begin
+                // if ( next_position != position ) begin
+                if ( move_up | move_down ) begin
                     moving          = 1;
                     delay_enable    = 1;
                 end else begin

@@ -42,6 +42,9 @@ module ElevatorFiles
     assign  __up_req    = up_requests;
     assign  __down_req  = down_requests;
 
+    wire    [ n_floors - 1 : 0 ]    all_requests;
+    assign  all_requests    = stop_requests | up_requests | down_requests;
+
     initial begin
         stop_requests   = 0;
         up_requests     = 0;
@@ -76,9 +79,9 @@ module ElevatorFiles
     wire    [ n_floors - 1 : 0 ]    mask_above;
     wire    [ n_floors - 1 : 0 ]    mask_below;
     assign  mask_above  = (~0) << position;             // HACK: position == offset + 1
-    assign  mask_below  = (~0) >> (n_floors - offset);  // HACK: n_floors == len(files) + 1
+    assign  mask_below  = ~( (~0) << offset );
 
-    assign  more_up     = (mask_above & (stop_requests | up_requests)) ? 1 : 0;
-    assign  more_down   = (mask_below & (stop_requests | down_requests)) ? 1 : 0;
+    assign  more_up     = (mask_above & all_requests) ? 1 : 0;
+    assign  more_down   = (mask_below & all_requests) ? 1 : 0;
 
 endmodule

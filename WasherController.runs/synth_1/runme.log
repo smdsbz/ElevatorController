@@ -14,9 +14,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 20656 
+INFO: Helper process launched with PID 6540 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 357.570 ; gain = 98.695
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 357.883 ; gain = 99.496
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'ElevatorEmulator' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorEmulator.v:4]
 	Parameter __half_sec_scale bound to: 49999999 - type: integer 
@@ -71,7 +71,7 @@ WARNING: [Synth 8-3331] design ElevatorEmulator has unconnected port sw[6]
 WARNING: [Synth 8-3331] design ElevatorEmulator has unconnected port sw[4]
 WARNING: [Synth 8-3331] design ElevatorEmulator has unconnected port sw[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 412.738 ; gain = 153.863
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 412.961 ; gain = 154.574
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -84,10 +84,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 412.738 ; gain = 153.863
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 412.961 ; gain = 154.574
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 412.738 ; gain = 153.863
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 412.961 ; gain = 154.574
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -407,22 +407,22 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 767.496 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 767.191 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 767.496 ; gain = 508.621
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 767.191 ; gain = 508.805
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 767.496 ; gain = 508.621
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 767.191 ; gain = 508.805
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 767.496 ; gain = 508.621
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 767.191 ; gain = 508.805
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5545] ROM "counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
@@ -436,13 +436,13 @@ INFO: [Synth 8-5544] ROM "delay_enable" won't be mapped to Block RAM because add
 INFO: [Synth 8-5544] ROM "door_ctl" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "last_move" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 WARNING: [Synth 8-327] inferring latch for variable 'segments_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/SevenSegDisplay.v:88]
-WARNING: [Synth 8-327] inferring latch for variable 'last_move_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v:187]
-WARNING: [Synth 8-327] inferring latch for variable 'door_ctl_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v:169]
-WARNING: [Synth 8-327] inferring latch for variable 'move_up_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v:164]
-WARNING: [Synth 8-327] inferring latch for variable 'move_down_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v:165]
+WARNING: [Synth 8-327] inferring latch for variable 'door_ctl_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v:172]
+WARNING: [Synth 8-327] inferring latch for variable 'last_move_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v:90]
+WARNING: [Synth 8-327] inferring latch for variable 'move_up_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v:167]
+WARNING: [Synth 8-327] inferring latch for variable 'move_down_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v:168]
 WARNING: [Synth 8-327] inferring latch for variable 'delay_enable_reg' [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v:45]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 767.496 ; gain = 508.621
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 767.191 ; gain = 508.805
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -455,7 +455,7 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 4     
+	   2 Input     32 Bit       Adders := 3     
 	   2 Input      5 Bit       Adders := 1     
 	   2 Input      4 Bit       Adders := 26    
 +---Registers : 
@@ -474,8 +474,8 @@ Detailed RTL Component Info :
 	   2 Input      2 Bit        Muxes := 2     
 	   4 Input      2 Bit        Muxes := 4     
 	   2 Input      1 Bit        Muxes := 38    
-	   3 Input      1 Bit        Muxes := 4     
 	   4 Input      1 Bit        Muxes := 7     
+	   3 Input      1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -559,12 +559,11 @@ Detailed RTL Component Info :
 	   4 Input      2 Bit        Muxes := 4     
 	   3 Input      2 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 14    
-	   3 Input      1 Bit        Muxes := 4     
 	   4 Input      1 Bit        Muxes := 7     
+	   3 Input      1 Bit        Muxes := 4     
 Module ElevatorFiles 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 1     
 	   2 Input      5 Bit       Adders := 1     
 +---Registers : 
 	                8 Bit    Registers := 3     
@@ -610,7 +609,7 @@ WARNING: [Synth 8-3332] Sequential element (EE_FileMod/down_requests_reg[0]) is 
 INFO: [Synth 8-3333] propagating constant 1 across sequential element (\EE_DispMod/segments_reg[0] )
 WARNING: [Synth 8-3332] Sequential element (EE_DispMod/segments_reg[0]) is unused and will be removed from module ElevatorEmulator.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 767.496 ; gain = 508.621
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 767.191 ; gain = 508.805
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -622,13 +621,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 767.496 ; gain = 508.621
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 767.191 ; gain = 508.805
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 778.887 ; gain = 520.012
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 778.297 ; gain = 519.910
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -640,7 +639,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 781.613 ; gain = 522.738
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 781.164 ; gain = 522.777
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -664,7 +663,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 781.613 ; gain = 522.738
+Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 781.164 ; gain = 522.777
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -677,7 +676,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 781.613 ; gain = 522.738
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 781.164 ; gain = 522.777
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -689,25 +688,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 781.613 ; gain = 522.738
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 781.164 ; gain = 522.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 781.613 ; gain = 522.738
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 781.164 ; gain = 522.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 781.613 ; gain = 522.738
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 781.164 ; gain = 522.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 781.613 ; gain = 522.738
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 781.164 ; gain = 522.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -726,11 +725,11 @@ Report Cell Usage:
 |1     |BUFG   |     2|
 |2     |CARRY4 |    24|
 |3     |LUT1   |     9|
-|4     |LUT2   |    27|
-|5     |LUT3   |    52|
-|6     |LUT4   |    37|
-|7     |LUT5   |    82|
-|8     |LUT6   |    75|
+|4     |LUT2   |    22|
+|5     |LUT3   |    41|
+|6     |LUT4   |    53|
+|7     |LUT5   |    78|
+|8     |LUT6   |    69|
 |9     |FDCE   |     4|
 |10    |FDPE   |     4|
 |11    |FDRE   |   136|
@@ -746,21 +745,21 @@ Report Instance Areas:
 +------+-----------------------+------------------------------+------+
 |      |Instance               |Module                        |Cells |
 +------+-----------------------+------------------------------+------+
-|1     |top                    |                              |   524|
-|2     |  EE_DispMod           |DisplayInterfaceDriver        |    30|
-|3     |  EE_FSMMod            |ElevatorFSM                   |   110|
+|1     |top                    |                              |   514|
+|2     |  EE_DispMod           |DisplayInterfaceDriver        |    27|
+|3     |  EE_FSMMod            |ElevatorFSM                   |   115|
 |4     |    FSM_DelayMod       |DelaySignalNS__parameterized0 |    99|
-|5     |  EE_FileMod           |ElevatorFiles                 |    75|
-|6     |  EE_MotorSimMod       |MotorSimulator                |   204|
-|7     |    __MS_MotorDelayMod |DelaySignalNS                 |   111|
+|5     |  EE_FileMod           |ElevatorFiles                 |    87|
+|6     |  EE_MotorSimMod       |MotorSimulator                |   180|
+|7     |    __MS_MotorDelayMod |DelaySignalNS                 |   107|
 |8     |  __EE_SlowerClock     |ClockSignal1S                 |    52|
 +------+-----------------------+------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 781.613 ; gain = 522.738
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 781.164 ; gain = 522.777
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 22 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:19 . Memory (MB): peak = 781.613 ; gain = 167.980
-Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 781.613 ; gain = 522.738
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:18 . Memory (MB): peak = 781.164 ; gain = 168.547
+Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 781.164 ; gain = 522.777
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 52 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -775,9 +774,9 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 55 Infos, 137 Warnings, 100 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 781.613 ; gain = 535.750
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 781.164 ; gain = 535.688
 WARNING: [Constraints 18-5210] No constraint will be written out.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/smdsbz/Projects/WasherController/WasherController.runs/synth_1/ElevatorEmulator.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file ElevatorEmulator_utilization_synth.rpt -pb ElevatorEmulator_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.038 . Memory (MB): peak = 781.613 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Sun Sep 23 16:17:44 2018...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.038 . Memory (MB): peak = 781.164 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Sun Sep 23 22:26:24 2018...

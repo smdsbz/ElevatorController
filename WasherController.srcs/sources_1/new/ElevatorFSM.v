@@ -86,6 +86,9 @@ module ElevatorFSM
         end
     end
 
+    wire    need_to_stop;
+    assign  need_to_stop    = stop_curr | ( stop_up & last_move ) | ( stop_down & ~last_move );
+
     // FSM II - State transitions
     always @ ( * ) begin
         // next_state  = current_state;
@@ -118,7 +121,7 @@ module ElevatorFSM
                     end
                 end
                 S_DoorClosed: begin
-                    if ( stop_curr | stop_up | stop_down ) begin
+                    if ( need_to_stop ) begin
                         next_state  = S_DoorOpened;
                     end else begin
                         if ( more_up | more_down ) begin
@@ -136,7 +139,7 @@ module ElevatorFSM
                     if ( moving ) begin
                         next_state  = S_Moving;
                     end else begin
-                        if ( stop_curr | stop_up | stop_down ) begin
+                        if ( need_to_stop ) begin
                             next_state  = S_DoorOpened;
                         end else begin
                             if ( more_up | more_down ) begin
@@ -180,42 +183,47 @@ module ElevatorFSM
                 delay_enable    = 0;
                 door_ctl        = 0;
                 if ( !moving ) begin
-                    if ( more_up != more_down ) begin
-                        if ( more_up ) begin
-                            move_up     = 1;
-                            move_down   = 0;
-                            last_move   = 1;
-                        end else begin
-                            move_down   = 1;
-                            move_up     = 0;
-                            last_move   = 0;
-                        end
-                    end else begin  // more_up == more_down == 1
-                        if ( more_up ) begin
-                            if ( position == 8 ) begin
-                                move_down   = 1;
-                                move_up     = 0;
-                                last_move   = 0;
-                            end else if ( position == 1 ) begin
+                    if ( need_to_stop ) begin
+                        // waiting to be transferred to S_DoorOpened
+                        move_up     = 0;
+                        move_down   = 0;
+                    end else begin
+                        if ( more_up != more_down ) begin
+                            if ( more_up ) begin
                                 move_up     = 1;
                                 move_down   = 0;
                                 last_move   = 1;
-                            end else begin  // intermidiate floors
-                                if ( last_move ) begin
-                                    move_up     = 1;
-                                    move_down   = 0;
-                                end else begin
-                                    move_down   = 1;
-                                    move_up     = 0;
-                                end
+                            end else begin
+                                move_down   = 1;
+                                move_up     = 0;
+                                last_move   = 0;
                             end
                         end else begin
-                            // waiting to be transferred to S_DoorOpen
-                            move_up     = 0;
-                            move_down   = 0;
-                        end
-
-                    end     // end more_up, more_down
+                            if ( more_up ) begin
+                                if ( position == 8 ) begin
+                                    move_down   = 1;
+                                    move_up     = 0;
+                                    last_move   = 0;
+                                end else if ( position == 1 ) begin
+                                    move_up     = 1;
+                                    move_down   = 0;
+                                    last_move   = 1;
+                                end else begin  // intermidiate floors
+                                    if ( last_move ) begin
+                                        move_up     = 1;
+                                        move_down   = 0;
+                                    end else begin
+                                        move_down   = 1;
+                                        move_up     = 0;
+                                    end
+                                end
+                            end else begin
+                                // waiting to be transferred to S_DoorOpened
+                                move_up     = 0;
+                                move_down   = 0;
+                            end
+                        end     // end more_up, more_down
+                    end
                 end else begin  // is moving
                     // request responed by MotorSimulator, retrieve request
                     move_up     = 0;

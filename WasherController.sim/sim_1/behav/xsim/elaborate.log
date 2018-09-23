@@ -3,7 +3,7 @@ Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
 Running: C:/Xilinx/Vivado/2018.2/bin/unwrapped/win64.o/xelab.exe -wto 62428be122ac4f75a6942345dd8eb08b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot TopModule_TB_behav xil_defaultlib.TopModule_TB xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
-WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 1 for port enable [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorEmulator.v:103]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 1 for port enable [C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorEmulator.v:110]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis

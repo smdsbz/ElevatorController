@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Sun Sep 23 16:18:54 2018
+| Date         : Sun Sep 23 22:27:32 2018
 | Host         : DESKTOP-01D8GON running 64-bit major release  (build 9200)
 | Command      : report_methodology -file ElevatorEmulator_methodology_drc_routed.rpt -pb ElevatorEmulator_methodology_drc_routed.pb -rpx ElevatorEmulator_methodology_drc_routed.rpx
 | Design       : ElevatorEmulator
@@ -23,13 +23,13 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 68
+             Violations found: 66
 +-----------+----------+-------------------------------+------------+
 | Rule      | Severity | Description                   | Violations |
 +-----------+----------+-------------------------------+------------+
 | LUTAR-1   | Warning  | LUT drives async reset alert  | 8          |
 | TIMING-17 | Warning  | Non-clocked sequential cell   | 24         |
-| TIMING-18 | Warning  | Missing input or output delay | 23         |
+| TIMING-18 | Warning  | Missing input or output delay | 21         |
 | TIMING-20 | Warning  | Non-clocked latch             | 13         |
 +-----------+----------+-------------------------------+------------+
 
@@ -37,37 +37,37 @@ Table of Contents
 -----------------
 LUTAR-1#1 Warning
 LUT drives async reset alert  
-LUT cell EE_MotorSimMod/next_position_reg[0]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[0]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell EE_FSMMod/next_position_reg[0]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[0]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#2 Warning
 LUT drives async reset alert  
-LUT cell EE_MotorSimMod/next_position_reg[0]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[0]_C/CLR, EE_MotorSimMod/next_position_reg[0]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell EE_FSMMod/next_position_reg[0]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[0]_C/CLR, EE_MotorSimMod/next_position_reg[0]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#3 Warning
 LUT drives async reset alert  
-LUT cell EE_MotorSimMod/next_position_reg[1]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[1]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell EE_FSMMod/next_position_reg[3]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[3]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#4 Warning
 LUT drives async reset alert  
-LUT cell EE_MotorSimMod/next_position_reg[1]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[1]_C/CLR, EE_MotorSimMod/next_position_reg[1]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell EE_MotorSimMod/next_position_reg[1]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[1]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#5 Warning
 LUT drives async reset alert  
-LUT cell EE_MotorSimMod/next_position_reg[2]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[2]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell EE_MotorSimMod/next_position_reg[1]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[1]_C/CLR, EE_MotorSimMod/next_position_reg[1]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#6 Warning
 LUT drives async reset alert  
-LUT cell EE_MotorSimMod/next_position_reg[2]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[2]_C/CLR, EE_MotorSimMod/next_position_reg[2]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell EE_MotorSimMod/next_position_reg[2]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[2]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#7 Warning
 LUT drives async reset alert  
-LUT cell EE_MotorSimMod/next_position_reg[3]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[3]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell EE_MotorSimMod/next_position_reg[2]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) EE_MotorSimMod/next_position_reg[2]_C/CLR, EE_MotorSimMod/next_position_reg[2]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#8 Warning
@@ -298,16 +298,6 @@ Related violations: <none>
 TIMING-18#21 Warning
 Missing input or output delay  
 An input delay is missing on sw[9] relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#22 Warning
-Missing input or output delay  
-An output delay is missing on RGB2_Blue relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#23 Warning
-Missing input or output delay  
-An output delay is missing on RGB2_Green relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-20#1 Warning

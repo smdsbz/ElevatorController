@@ -52,8 +52,8 @@ module ElevatorEmulator
                                 { 1'b0, floor_sel[6:0] } : 8'b0;
 
     // Output State Indications
-    assign  RGB1_Green  = (clk) ? door_ind : 0;
-    assign  RGB1_Red    = (clk) ? ~door_ind : 0;
+    assign  RGB1_Green  = clk & door_ind;
+    assign  RGB1_Red    = clk & ~door_ind;
 
     wire    [ 7 : 0 ]   __stop_req;
     wire    [ 7 : 0 ]   __up_req;
@@ -85,8 +85,8 @@ module ElevatorEmulator
 
     /******* Motor Emulator *******/
 
-    assign  RGB2_Blue   = moving & last_move;
-    assign  RGB2_Green  = moving & ~last_move;
+    assign  RGB2_Blue   = clk & ( moving & last_move );
+    assign  RGB2_Green  = clk & ( moving & ~last_move );
 
     MotorSimulator #(12, __half_sec_scale) EE_MotorSimMod (
         .power      ( power )           ,
