@@ -2,6 +2,7 @@
 
 
 module ElevatorEmulator
+#(  parameter   __half_sec_scale    = 49_999_999    )
 (   // System Inputs
     input                   clk         ,   // hardware clock
     // User Inputs
@@ -73,83 +74,50 @@ module ElevatorEmulator
     endgenerate
 
     // Internal Wires
-    reg     [ 3 : 0 ]   curr_floor;
+    wire    [ 3 : 0 ]   curr_floor;
     wire    [ 3 : 0 ]   move_res_time;
+    wire                moving;
     wire                stop_curr, stop_up, stop_down;
     wire                more_up, more_down;
     wire                move_up, move_down;
+    wire                last_move;
     wire                open_up, open_down;
 
     /******* Motor Emulator *******/
 
-    reg                 moving, last_move;
-    reg                 move_delay_enable;
-    wire                move_delay_timeout;
+    assign  RGB2_Blue   = moving & last_move;
+    assign  RGB2_Green  = moving & ~last_move;
 
-    assign  RGB2_Blue   = moving & move_up;
-    assign  RGB2_Green  = moving & move_down;
-
-    DelaySignalNS #(12) (
-        .enable         ( move_delay_enable )   ,
-        .clkdev         ( clk )                 ,
-        .__counter      ( move_res_time )       ,
-        .timeout        ( move_delay_timeout )  );
-
-    // Motor Emulator FSM (compact implementation)
-    always @ ( * ) begin
-        if ( !power ) begin
-            curr_floor          = (curr_floor == 0 || curr_floor > 8) ? 1 : curr_floor;
-            last_move           = 1;
-            move_delay_enable   = 0;
-        end else begin
-            if ( !moving ) begin
-                move_delay_enable   = 0;
-                if ( move_up || move_down ) begin
-                    moving  = 1;
-                end else begin
-                    // NOTE: no move requests, do nothing!!!
-                    /* pass */
-                end
-            end else begin
-                move_delay_enable   = 1;
-                if ( move_up ) begin
-                    last_move   = 1;
-                end else begin
-                    last_move   = 0;
-                end
-                if ( move_delay_timeout ) begin     // arriving
-                    if ( move_up ) begin
-                        curr_floor  = curr_floor + 1;
-                    end else if ( move_down ) begin
-                        curr_floor  = curr_floor - 1;
-                    end else begin
-                        // NOTE: moving without request from FSM, should be impossible!!!
-                        /* pass */
-                    end
-                    moving  = 0;
-                end else begin
-                    // NOTE: still moving, do nothing!!!
-                    /* pass */
-                end
-            end     // end moving
-        end     // end power
-    end
+    MotorSimulator #(12, __half_sec_scale) EE_MotorSimMod (
+        .power      ( power )           ,
+        .clk        ( clk )             ,
+        .move_up    ( move_up )         ,
+        .move_down  ( move_down )       ,
+        .position   ( curr_floor )      ,
+        .moving     ( moving )          ,
+        .__count    ( move_res_time )   );
 
     /******* Sub-Modules *******/
 
     wire                __slower_clk;
     wire    [ 3 : 0 ]   __FSM_state;
+    wire    [ 6 : 0 ]   __seg_reversed;     // a-first, g-last
+    generate
+        for ( __plc = 0; __plc <= 6; __plc = __plc + 1 ) begin
+            assign  __seg_reversed[__plc]   = seg[6 - __plc];
+        end
+    endgenerate
     ClockSignal1S #(49_999) __EE_SlowerClock (1, clk, __slower_clk);
     DisplayInterfaceDriver EE_DispMod (
-        .power          ( power )           ,
-        .clk            ( __slower_clk )    ,
-        .curr_floor     ( curr_floor )      ,
-        .move_res_time  ( move_res_time )   ,
-        .__state        ( __FSM_state )     ,
-        .segments       ( { seg[0], seg[1], seg[2], seg[3], seg[4], seg[5], seg[6], dp } )  ,
-        .ansel          ( an )              );
+        .power          ( power )                       ,
+        .clk            ( __slower_clk )                ,
+        .curr_floor     ( curr_floor )                  ,
+        .move_res_time  ( move_res_time )               ,
+        .__state        ( __FSM_state )                 ,
+        .segments       ( { __seg_reversed[6:0], dp } ) ,
+        .ansel          ( an )                          );
 
-    ElevatorFSM EE_FSMMod (
+    ElevatorFSM #(8, __half_sec_scale) EE_FSMMod (
         // System Input
         .clk            ( clk )         ,
         .power          ( power )       ,
@@ -165,19 +133,20 @@ module ElevatorEmulator
         // Emulator Input
         .position       ( curr_floor )  ,
         .moving         ( moving )      ,
-        .last_move      ( last_move )   ,
-        // File Outpu
+        // File Output
         .open_up        ( open_up )     ,
         .open_down      ( open_down )   ,
         // Emulator Output
         .move_up        ( move_up )     ,
         .move_down      ( move_down )   ,
         .door_ctl       ( door_ind )    ,
+        .last_move      ( last_move )   ,
         .__state        ( __FSM_state ) );
 
-    ElevatorFiles EE_FileMod (
+    ElevatorFiles #(8) EE_FileMod (
         // System Input
-        .reset          ( power )           ,
+        .power          ( power )           ,
+        .clk            ( clk )             ,
         // User Input
         .stop_buttons   ( stopat_buttons )  ,
         .up_buttons     ( goup_buttons )    ,
@@ -186,6 +155,7 @@ module ElevatorEmulator
         .position       ( curr_floor )      ,
         .open_up        ( open_up )         ,
         .open_down      ( open_down )       ,
+        .moving         ( moving )          ,
         // Indications to FSM
         .stop_curr      ( stop_curr )       ,
         .stop_up        ( stop_up )         ,

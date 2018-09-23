@@ -21,11 +21,11 @@ module ElevatorFSM
     // Emulator Input
     input       [ 3 : 0 ]   position    ,   // current position of the elevator (in range [1, 8])
     input                   moving      ,   // is elevator moving (set if moving)
-    input                   last_move   ,   // HIGH for up, LOW for down
     // Emulator Output
     output reg              move_up     ,   // move up request
     output reg              move_down   ,   // move down request
     output reg              door_ctl    ,   // door contorl (open on HIGH)
+    output reg              last_move   ,
     // DEBUG
     output wire [ 3 : 0 ]   __state     );  // current state
 
@@ -133,13 +133,17 @@ module ElevatorFSM
                     end
                 end
                 S_Moving: begin
-                    if ( stop_curr | stop_up | stop_down ) begin
-                        next_state  = S_DoorOpened;
+                    if ( moving ) begin
+                        next_state  = S_Moving;
                     end else begin
-                        if ( more_up | more_down ) begin
-                            next_state  = S_Moving;
+                        if ( stop_curr | stop_up | stop_down ) begin
+                            next_state  = S_DoorOpened;
                         end else begin
-                            next_state  = S_DoorClosed;
+                            if ( more_up | more_down ) begin
+                                next_state  = S_Moving;
+                            end else begin
+                                next_state  = S_DoorOpened;
+                            end
                         end
                     end
                 end
@@ -157,6 +161,8 @@ module ElevatorFSM
         case ( current_state )
             S_PowerOff: begin
                 delay_enable    = 0;
+                move_up         = 0;
+                move_down       = 0;
             end
             S_DoorOpened: begin
                 delay_enable    = 1;
@@ -173,31 +179,48 @@ module ElevatorFSM
             S_Moving: begin
                 delay_enable    = 0;
                 door_ctl        = 0;
-                if ( more_up != more_down ) begin
-                    if ( more_up ) begin
-                        move_up     = 1;
-                        move_down   = 0;
-                    end else begin
-                        move_down   = 1;
-                        move_up     = 0;
-                    end
-                end else begin  // more_up == more_down
-                    if ( position == 8 ) begin
-                        move_down   = 1;
-                        move_up     = 0;
-                    end else if ( position == 1 ) begin
-                        move_up     = 1;
-                        move_down   = 0;
-                    end else begin  // intermidiate floors
-                        if ( last_move ) begin
+                if ( !moving ) begin
+                    if ( more_up != more_down ) begin
+                        if ( more_up ) begin
                             move_up     = 1;
                             move_down   = 0;
+                            last_move   = 1;
                         end else begin
                             move_down   = 1;
                             move_up     = 0;
+                            last_move   = 0;
                         end
-                    end
-                end     // end more_up, more_down
+                    end else begin  // more_up == more_down == 1
+                        if ( more_up ) begin
+                            if ( position == 8 ) begin
+                                move_down   = 1;
+                                move_up     = 0;
+                                last_move   = 0;
+                            end else if ( position == 1 ) begin
+                                move_up     = 1;
+                                move_down   = 0;
+                                last_move   = 1;
+                            end else begin  // intermidiate floors
+                                if ( last_move ) begin
+                                    move_up     = 1;
+                                    move_down   = 0;
+                                end else begin
+                                    move_down   = 1;
+                                    move_up     = 0;
+                                end
+                            end
+                        end else begin
+                            // waiting to be transferred to S_DoorOpen
+                            move_up     = 0;
+                            move_down   = 0;
+                        end
+
+                    end     // end more_up, more_down
+                end else begin  // is moving
+                    // request responed by MotorSimulator, retrieve request
+                    move_up     = 0;
+                    move_down   = 0;
+                end
             end
             default: begin
                 /* pass */

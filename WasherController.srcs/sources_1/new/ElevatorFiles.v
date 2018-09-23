@@ -6,15 +6,18 @@ module ElevatorFiles
     parameter   btnOutDown  = 3'b001    ,
     parameter   btnIn       = 3'b010    ,
     parameter   btnOutUp    = 3'b100    )
-(   input                               reset           ,   // [posedge] reset signal
+(   input                               power           ,   // power signal
+    input                               clk             ,
     // User Control
     input       [ n_floors - 1 : 0 ]    stop_buttons    ,
     input       [ n_floors - 1 : 0 ]    up_buttons      ,
     input       [ n_floors - 1 : 0 ]    down_buttons    ,
     // Elevator FSM Signals
-    input       [ 4 : 0 ]               position        ,   // current position of the elevator (in range [1, 8])
+    input       [ 3 : 0 ]               position        ,   // current position of the elevator (in range [1, 8])
     input                               open_up         ,   // elevator is opening for user wants to go up / down
     input                               open_down       ,   //     (open both if without more requests from up or down)
+    // Motor Emulator Input
+    input                               moving          ,
     // Indications
     output wire                         stop_curr       ,   // user inside want's to stop at current floor
     output wire                         stop_up         ,   // user at current floor wants to go up / down
@@ -39,19 +42,28 @@ module ElevatorFiles
     assign  __up_req    = up_requests;
     assign  __down_req  = down_requests;
 
+    initial begin
+        stop_requests   = 0;
+        up_requests     = 0;
+        down_requests   = 0;
+    end
+
     // 1-indexed `position` to 0-indexed `offset`
     wire    [ 4 : 0 ]   offset;
     assign  offset  = position - 1;
 
     // user request process blocks
     // add block
-    always @ ( * ) begin
-        if ( !reset ) begin
+    always @ ( posedge clk ) begin
+        if ( !power ) begin
             /* pass */
+            stop_requests   = 0;
+            up_requests     = 0;
+            down_requests   = 0;
         end else begin
-            stop_requests   = ( stop_requests | stop_buttons )  & ~( 8'b1 << offset );
-            up_requests     = ( up_requests | up_buttons )      & ~( { 7'b0, open_up } << offset );
-            down_requests   = ( down_requests | down_buttons )  & ~( { 7'b0, open_down } << offset );
+            stop_requests   = ( stop_requests | stop_buttons )  & ~( { 7'b0, (open_up | open_down) & ~moving } << offset );
+            up_requests     = ( up_requests | up_buttons )      & ~( { 7'b0, open_up & ~moving } << offset );
+            down_requests   = ( down_requests | down_buttons )  & ~( { 7'b0, open_down & ~moving } << offset );
         end
     end
 

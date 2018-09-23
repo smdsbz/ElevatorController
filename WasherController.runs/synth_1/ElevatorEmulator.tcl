@@ -17,7 +17,11 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param synth.incrementalSynthesisCache C:/Users/smdsbz/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-11316-DESKTOP-01D8GON/incrSyn
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -34,6 +38,7 @@ read_verilog -library xil_defaultlib {
   C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/imports/sources_1/new/Clock.v
   C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFSM.v
   C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorFiles.v
+  C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/MotorSimulator.v
   C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/SevenSegDisplay.v
   C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sources_1/new/ElevatorEmulator.v
 }
