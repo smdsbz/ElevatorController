@@ -8,6 +8,7 @@ module ElevatorFile_TB ();
     reg     [ 7 : 0 ]   up_buttons;
     reg     [ 7 : 0 ]   down_buttons;
     reg     [ 3 : 0 ]   position;
+    reg                 moving;
     reg                 open_up, open_down;
     wire                stop_curr, stop_up, stop_down;
     wire                more_up, more_down;
@@ -16,11 +17,16 @@ module ElevatorFile_TB ();
     wire    [ 7 : 0 ]   down_requests;
 
     ElevatorFiles ElevatorFiles_TestMod (
+        // System Input
         .power          ( power )           ,
+        .clk            ( clk )             ,
+        // User Input
         .stop_buttons   ( stop_buttons )    ,
         .up_buttons     ( up_buttons )      ,
         .down_buttons   ( down_buttons )    ,
+        // Emulator Signals
         .position       ( position )        ,
+        .moving         ( moving )          ,
         .open_up        ( open_up )         ,
         .open_down      ( open_down )       ,
         // Outpus
@@ -35,12 +41,11 @@ module ElevatorFile_TB ();
         .__down_req     ( down_requests )   );
 
     initial begin
-        #0      power           = 0;            // initializations
+        #0      power           = 0;    // initializations
         #0      clk             = 0;
-        #0      stop_buttons    = 0;
-        #0      up_buttons      = 0;
-        #0      down_buttons    = 0;
+        #0      { stop_buttons, up_buttons, down_buttons }  = 0;
         #0      position        = 1;
+        #0      moving          = 0;    // force 0, for test purpose
         #0      { open_up, open_down }  = 0;
         #5      power           = 1;
         #5      up_buttons[1]   = 1;    // register go-up request at 2nd floor
@@ -57,7 +62,7 @@ module ElevatorFile_TB ();
     end
 
     always @ ( * ) begin
-        #2  clk <= ~clk;
+        #1  clk <= ~clk;
     end
 
 endmodule

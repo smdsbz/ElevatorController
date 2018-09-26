@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Sun Sep 23 22:27:33 2018
+| Date         : Wed Sep 26 17:36:29 2018
 | Host         : DESKTOP-01D8GON running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file ElevatorEmulator_timing_summary_routed.rpt -pb ElevatorEmulator_timing_summary_routed.pb -rpx ElevatorEmulator_timing_summary_routed.rpx -warn_on_violation
 | Design       : ElevatorEmulator
@@ -54,9 +54,9 @@ Table of Contents
 --------------------
  There are 7 register/latch pins with no clock driven by root clock pin: sw[2] (HIGH)
 
- There are 13 register/latch pins with no clock driven by root clock pin: EE_FSMMod/current_state_reg[0]/Q (HIGH)
+ There are 14 register/latch pins with no clock driven by root clock pin: EE_FSMMod/current_state_reg[0]/Q (HIGH)
 
- There are 13 register/latch pins with no clock driven by root clock pin: EE_FSMMod/current_state_reg[1]/Q (HIGH)
+ There are 14 register/latch pins with no clock driven by root clock pin: EE_FSMMod/current_state_reg[1]/Q (HIGH)
 
  There are 12 register/latch pins with no clock driven by root clock pin: EE_FSMMod/last_move_reg/Q (HIGH)
 
@@ -104,7 +104,7 @@ Table of Contents
 
  There are 13 register/latch pins with no clock driven by root clock pin: EE_FileMod/up_requests_reg[6]/Q (HIGH)
 
- There are 12 register/latch pins with no clock driven by root clock pin: EE_MotorSimMod/moving_reg/Q (HIGH)
+ There are 13 register/latch pins with no clock driven by root clock pin: EE_MotorSimMod/moving_reg/Q (HIGH)
 
  There are 13 register/latch pins with no clock driven by root clock pin: EE_MotorSimMod/position_reg[0]/Q (HIGH)
 
@@ -188,7 +188,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      4.223        0.000                      0                  253        0.180        0.000                      0                  253        4.500        0.000                       0                   137  
+      0.182        0.000                      0                  333        0.115        0.000                      0                  333        4.500        0.000                       0                   176  
 
 
 All user specified timing constraints are met.
@@ -211,7 +211,7 @@ sys_clk_pin  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-sys_clk_pin         4.223        0.000                      0                  253        0.180        0.000                      0                  253        4.500        0.000                       0                   137  
+sys_clk_pin         0.182        0.000                      0                  333        0.115        0.000                      0                  333        4.500        0.000                       0                   176  
 
 
 ------------------------------------------------------------------------------------------------
@@ -242,287 +242,222 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  sys_clk_pin
   To Clock:  sys_clk_pin
 
-Setup :            0  Failing Endpoints,  Worst Slack        4.223ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.180ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        0.182ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.115ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             4.223ns  (required time - arrival time)
+Slack (MET) :             0.182ns  (required time - arrival time)
   Source:                 EE_MotorSimMod/position_reg[0]/C
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FileMod/up_requests_reg[1]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.652ns  (logic 1.309ns (23.158%)  route 4.343ns (76.842%))
-  Logic Levels:           5  (LUT3=1 LUT4=1 LUT5=1 LUT6=2)
-  Clock Path Skew:        -0.042ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.025ns = ( 15.025 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.326ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.723     5.326    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y84         FDSE                                         r  EE_MotorSimMod/position_reg[0]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X85Y84         FDSE (Prop_fdse_C_Q)         0.456     5.782 r  EE_MotorSimMod/position_reg[0]/Q
-                         net (fo=47, routed)          1.106     6.888    EE_MotorSimMod/Q[0]
-    SLICE_X87Y81         LUT3 (Prop_lut3_I0_O)        0.154     7.042 f  EE_MotorSimMod/up_requests[6]_i_4/O
-                         net (fo=4, routed)           1.012     8.054    EE_FileMod/position_reg[0]
-    SLICE_X86Y82         LUT6 (Prop_lut6_I0_O)        0.327     8.381 r  EE_FileMod/last_move_reg_i_9/O
-                         net (fo=1, routed)           0.644     9.026    EE_FileMod/last_move_reg_i_9_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I0_O)        0.124     9.150 f  EE_FileMod/last_move_reg_i_4/O
-                         net (fo=8, routed)           0.670     9.819    EE_FileMod/moving_reg
-    SLICE_X85Y83         LUT4 (Prop_lut4_I3_O)        0.124     9.943 r  EE_FileMod/up_requests[6]_i_3/O
-                         net (fo=6, routed)           0.571    10.514    EE_MotorSimMod/position_reg[3]_1
-    SLICE_X87Y81         LUT5 (Prop_lut5_I2_O)        0.124    10.638 r  EE_MotorSimMod/up_requests[1]_i_1/O
-                         net (fo=1, routed)           0.340    10.978    EE_FileMod/D[1]
-    SLICE_X87Y81         FDRE                                         r  EE_FileMod/up_requests_reg[1]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    E3                                                0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          1.920    13.331    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.602    15.025    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X87Y81         FDRE                                         r  EE_FileMod/up_requests_reg[1]/C
-                         clock pessimism              0.259    15.284    
-                         clock uncertainty           -0.035    15.248    
-    SLICE_X87Y81         FDRE (Setup_fdre_C_D)       -0.047    15.201    EE_FileMod/up_requests_reg[1]
-  -------------------------------------------------------------------
-                         required time                         15.201    
-                         arrival time                         -10.978    
-  -------------------------------------------------------------------
-                         slack                                  4.223    
-
-Slack (MET) :             4.322ns  (required time - arrival time)
-  Source:                 EE_MotorSimMod/position_reg[1]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_MotorSimMod/moving_reg/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.698ns  (logic 1.538ns (26.992%)  route 4.160ns (73.008%))
-  Logic Levels:           5  (LUT3=1 LUT4=1 LUT5=1 LUT6=2)
-  Clock Path Skew:        -0.022ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.028ns = ( 15.028 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.325ns
-    Clock Pessimism Removal (CPR):    0.275ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.722     5.325    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y83         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X85Y83         FDRE (Prop_fdre_C_Q)         0.456     5.781 r  EE_MotorSimMod/position_reg[1]/Q
-                         net (fo=51, routed)          1.293     7.073    EE_MotorSimMod/Q[1]
-    SLICE_X89Y81         LUT3 (Prop_lut3_I2_O)        0.152     7.225 r  EE_MotorSimMod/next_position[2]_C_i_1/O
-                         net (fo=8, routed)           1.063     8.289    EE_FileMod/position_reg[2]_3
-    SLICE_X85Y82         LUT6 (Prop_lut6_I4_O)        0.332     8.621 f  EE_FileMod/last_move_reg_i_28/O
-                         net (fo=1, routed)           0.151     8.772    EE_FileMod/last_move_reg_i_28_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I5_O)        0.124     8.896 f  EE_FileMod/last_move_reg_i_15/O
-                         net (fo=3, routed)           0.815     9.711    EE_FSMMod/position_reg[1]_1
-    SLICE_X84Y84         LUT4 (Prop_lut4_I0_O)        0.146     9.857 f  EE_FSMMod/last_move_reg_i_5/O
-                         net (fo=11, routed)          0.837    10.695    EE_FileMod/current_state_reg[1]_1
-    SLICE_X84Y85         LUT5 (Prop_lut5_I4_O)        0.328    11.023 r  EE_FileMod/moving_i_1/O
-                         net (fo=1, routed)           0.000    11.023    EE_MotorSimMod/delay_enable
-    SLICE_X84Y85         FDRE                                         r  EE_MotorSimMod/moving_reg/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    E3                                                0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          1.920    13.331    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.605    15.028    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X84Y85         FDRE                                         r  EE_MotorSimMod/moving_reg/C
-                         clock pessimism              0.275    15.303    
-                         clock uncertainty           -0.035    15.267    
-    SLICE_X84Y85         FDRE (Setup_fdre_C_D)        0.077    15.344    EE_MotorSimMod/moving_reg
-  -------------------------------------------------------------------
-                         required time                         15.344    
-                         arrival time                         -11.023    
-  -------------------------------------------------------------------
-                         slack                                  4.322    
-
-Slack (MET) :             4.584ns  (required time - arrival time)
-  Source:                 EE_MotorSimMod/position_reg[0]/C
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FileMod/up_requests_reg[3]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.369ns  (logic 1.309ns (24.383%)  route 4.060ns (75.617%))
-  Logic Levels:           5  (LUT3=1 LUT4=1 LUT6=3)
-  Clock Path Skew:        -0.043ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.024ns = ( 15.024 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.326ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.723     5.326    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y84         FDSE                                         r  EE_MotorSimMod/position_reg[0]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X85Y84         FDSE (Prop_fdse_C_Q)         0.456     5.782 r  EE_MotorSimMod/position_reg[0]/Q
-                         net (fo=47, routed)          1.106     6.888    EE_MotorSimMod/Q[0]
-    SLICE_X87Y81         LUT3 (Prop_lut3_I0_O)        0.154     7.042 f  EE_MotorSimMod/up_requests[6]_i_4/O
-                         net (fo=4, routed)           1.012     8.054    EE_FileMod/position_reg[0]
-    SLICE_X86Y82         LUT6 (Prop_lut6_I0_O)        0.327     8.381 r  EE_FileMod/last_move_reg_i_9/O
-                         net (fo=1, routed)           0.644     9.026    EE_FileMod/last_move_reg_i_9_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I0_O)        0.124     9.150 f  EE_FileMod/last_move_reg_i_4/O
-                         net (fo=8, routed)           0.670     9.819    EE_FileMod/moving_reg
-    SLICE_X85Y83         LUT4 (Prop_lut4_I3_O)        0.124     9.943 r  EE_FileMod/up_requests[6]_i_3/O
-                         net (fo=6, routed)           0.627    10.570    EE_FileMod/up_requests_reg[2]_0
-    SLICE_X86Y80         LUT6 (Prop_lut6_I1_O)        0.124    10.694 r  EE_FileMod/up_requests[3]_i_1/O
-                         net (fo=1, routed)           0.000    10.694    EE_FileMod/up_requests0[3]
-    SLICE_X86Y80         FDRE                                         r  EE_FileMod/up_requests_reg[3]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    E3                                                0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          1.920    13.331    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.601    15.024    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X86Y80         FDRE                                         r  EE_FileMod/up_requests_reg[3]/C
-                         clock pessimism              0.259    15.283    
-                         clock uncertainty           -0.035    15.247    
-    SLICE_X86Y80         FDRE (Setup_fdre_C_D)        0.031    15.278    EE_FileMod/up_requests_reg[3]
-  -------------------------------------------------------------------
-                         required time                         15.278    
-                         arrival time                         -10.694    
-  -------------------------------------------------------------------
-                         slack                                  4.584    
-
-Slack (MET) :             4.603ns  (required time - arrival time)
-  Source:                 EE_MotorSimMod/position_reg[0]/C
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FileMod/up_requests_reg[5]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.350ns  (logic 1.309ns (24.466%)  route 4.041ns (75.534%))
-  Logic Levels:           5  (LUT3=1 LUT4=1 LUT5=1 LUT6=2)
-  Clock Path Skew:        -0.042ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.025ns = ( 15.025 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.326ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.723     5.326    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y84         FDSE                                         r  EE_MotorSimMod/position_reg[0]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X85Y84         FDSE (Prop_fdse_C_Q)         0.456     5.782 r  EE_MotorSimMod/position_reg[0]/Q
-                         net (fo=47, routed)          1.106     6.888    EE_MotorSimMod/Q[0]
-    SLICE_X87Y81         LUT3 (Prop_lut3_I0_O)        0.154     7.042 f  EE_MotorSimMod/up_requests[6]_i_4/O
-                         net (fo=4, routed)           1.012     8.054    EE_FileMod/position_reg[0]
-    SLICE_X86Y82         LUT6 (Prop_lut6_I0_O)        0.327     8.381 r  EE_FileMod/last_move_reg_i_9/O
-                         net (fo=1, routed)           0.644     9.026    EE_FileMod/last_move_reg_i_9_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I0_O)        0.124     9.150 f  EE_FileMod/last_move_reg_i_4/O
-                         net (fo=8, routed)           0.670     9.819    EE_FileMod/moving_reg
-    SLICE_X85Y83         LUT4 (Prop_lut4_I3_O)        0.124     9.943 r  EE_FileMod/up_requests[6]_i_3/O
-                         net (fo=6, routed)           0.609    10.552    EE_MotorSimMod/position_reg[3]_1
-    SLICE_X89Y81         LUT5 (Prop_lut5_I3_O)        0.124    10.676 r  EE_MotorSimMod/up_requests[5]_i_1/O
-                         net (fo=1, routed)           0.000    10.676    EE_FileMod/D[3]
-    SLICE_X89Y81         FDRE                                         r  EE_FileMod/up_requests_reg[5]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    E3                                                0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          1.920    13.331    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.602    15.025    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X89Y81         FDRE                                         r  EE_FileMod/up_requests_reg[5]/C
-                         clock pessimism              0.259    15.284    
-                         clock uncertainty           -0.035    15.248    
-    SLICE_X89Y81         FDRE (Setup_fdre_C_D)        0.031    15.279    EE_FileMod/up_requests_reg[5]
-  -------------------------------------------------------------------
-                         required time                         15.279    
-                         arrival time                         -10.676    
-  -------------------------------------------------------------------
-                         slack                                  4.603    
-
-Slack (MET) :             4.611ns  (required time - arrival time)
-  Source:                 EE_MotorSimMod/position_reg[0]/C
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+                            (falling edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            EE_FSMMod/current_state_reg[1]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.409ns  (logic 1.537ns (28.414%)  route 3.872ns (71.586%))
-  Logic Levels:           5  (LUT3=2 LUT6=3)
-  Clock Path Skew:        -0.025ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.026ns = ( 15.026 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.326ns
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.769ns  (logic 1.321ns (27.702%)  route 3.448ns (72.298%))
+  Logic Levels:           5  (LUT4=1 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.046ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.014ns = ( 15.014 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.319ns = ( 10.319 - 5.000 ) 
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.716    10.319    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X83Y78         FDSE                                         r  EE_MotorSimMod/position_reg[0]/C  (IS_INVERTED)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X83Y78         FDSE (Prop_fdse_C_Q)         0.459    10.778 r  EE_MotorSimMod/position_reg[0]/Q
+                         net (fo=44, routed)          1.162    11.940    EE_MotorSimMod/next_position_reg[3]_C_0[0]
+    SLICE_X84Y78         LUT4 (Prop_lut4_I2_O)        0.150    12.090 r  EE_MotorSimMod/next_position[3]_C_i_1/O
+                         net (fo=4, routed)           0.635    12.724    EE_FileMod/position_reg[3]_0
+    SLICE_X84Y78         LUT5 (Prop_lut5_I0_O)        0.340    13.064 r  EE_FileMod/delay_enable_i_7/O
+                         net (fo=1, routed)           0.670    13.734    EE_FileMod/delay_enable_i_7_n_0
+    SLICE_X84Y78         LUT6 (Prop_lut6_I2_O)        0.124    13.858 r  EE_FileMod/delay_enable_i_5/O
+                         net (fo=2, routed)           0.483    14.342    EE_MotorSimMod/position_reg[2]_1
+    SLICE_X83Y78         LUT6 (Prop_lut6_I5_O)        0.124    14.466 f  EE_MotorSimMod/current_state[1]_i_2/O
+                         net (fo=1, routed)           0.498    14.963    EE_MotorSimMod/current_state[1]_i_2_n_0
+    SLICE_X81Y78         LUT6 (Prop_lut6_I0_O)        0.124    15.087 r  EE_MotorSimMod/current_state[1]_i_1/O
+                         net (fo=1, routed)           0.000    15.087    EE_FSMMod/D[0]
+    SLICE_X81Y78         FDRE                                         r  EE_FSMMod/current_state_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    E3                                                0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          1.920    13.331    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.591    15.014    EE_FSMMod/clk_IBUF_BUFG
+    SLICE_X81Y78         FDRE                                         r  EE_FSMMod/current_state_reg[1]/C
+                         clock pessimism              0.259    15.273    
+                         clock uncertainty           -0.035    15.237    
+    SLICE_X81Y78         FDRE (Setup_fdre_C_D)        0.032    15.269    EE_FSMMod/current_state_reg[1]
+  -------------------------------------------------------------------
+                         required time                         15.269    
+                         arrival time                         -15.087    
+  -------------------------------------------------------------------
+                         slack                                  0.182    
+
+Slack (MET) :             0.416ns  (required time - arrival time)
+  Source:                 EE_MotorSimMod/position_reg[1]/C
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_FileMod/down_requests_reg[5]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.545ns  (logic 1.079ns (23.741%)  route 3.466ns (76.259%))
+  Logic Levels:           5  (LUT4=1 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.036ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.021ns = ( 15.021 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.316ns = ( 10.316 - 5.000 ) 
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.713    10.316    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X82Y77         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C  (IS_INVERTED)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X82Y77         FDRE (Prop_fdre_C_Q)         0.459    10.775 r  EE_MotorSimMod/position_reg[1]/Q
+                         net (fo=44, routed)          1.071    11.845    EE_FileMod/position_reg[3]_1[1]
+    SLICE_X86Y77         LUT5 (Prop_lut5_I1_O)        0.124    11.969 r  EE_FileMod/last_move_reg_i_26/O
+                         net (fo=1, routed)           0.806    12.776    EE_FileMod/last_move_reg_i_26_n_0
+    SLICE_X85Y77         LUT6 (Prop_lut6_I1_O)        0.124    12.900 r  EE_FileMod/last_move_reg_i_12/O
+                         net (fo=2, routed)           0.529    13.429    EE_FileMod/last_move_reg_i_12_n_0
+    SLICE_X84Y77         LUT6 (Prop_lut6_I0_O)        0.124    13.553 f  EE_FileMod/last_move_reg_i_4/O
+                         net (fo=14, routed)          0.579    14.132    EE_MotorSimMod/position_reg[3]_0
+    SLICE_X84Y76         LUT4 (Prop_lut4_I1_O)        0.124    14.256 r  EE_MotorSimMod/down_requests[6]_i_2/O
+                         net (fo=6, routed)           0.481    14.737    EE_MotorSimMod/down_requests[6]_i_2_n_0
+    SLICE_X86Y77         LUT5 (Prop_lut5_I3_O)        0.124    14.861 r  EE_MotorSimMod/down_requests[5]_i_1/O
+                         net (fo=1, routed)           0.000    14.861    EE_FileMod/down_requests_reg[7]_1[4]
+    SLICE_X86Y77         FDRE                                         r  EE_FileMod/down_requests_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    E3                                                0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          1.920    13.331    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.598    15.021    EE_FileMod/clk_IBUF_BUFG
+    SLICE_X86Y77         FDRE                                         r  EE_FileMod/down_requests_reg[5]/C
+                         clock pessimism              0.259    15.280    
+                         clock uncertainty           -0.035    15.244    
+    SLICE_X86Y77         FDRE (Setup_fdre_C_D)        0.032    15.276    EE_FileMod/down_requests_reg[5]
+  -------------------------------------------------------------------
+                         required time                         15.276    
+                         arrival time                         -14.861    
+  -------------------------------------------------------------------
+                         slack                                  0.416    
+
+Slack (MET) :             0.418ns  (required time - arrival time)
+  Source:                 EE_MotorSimMod/position_reg[1]/C
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_FileMod/down_requests_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.542ns  (logic 1.079ns (23.757%)  route 3.463ns (76.243%))
+  Logic Levels:           5  (LUT4=1 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.036ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.021ns = ( 15.021 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.316ns = ( 10.316 - 5.000 ) 
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.713    10.316    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X82Y77         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C  (IS_INVERTED)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X82Y77         FDRE (Prop_fdre_C_Q)         0.459    10.775 r  EE_MotorSimMod/position_reg[1]/Q
+                         net (fo=44, routed)          1.071    11.845    EE_FileMod/position_reg[3]_1[1]
+    SLICE_X86Y77         LUT5 (Prop_lut5_I1_O)        0.124    11.969 r  EE_FileMod/last_move_reg_i_26/O
+                         net (fo=1, routed)           0.806    12.776    EE_FileMod/last_move_reg_i_26_n_0
+    SLICE_X85Y77         LUT6 (Prop_lut6_I1_O)        0.124    12.900 r  EE_FileMod/last_move_reg_i_12/O
+                         net (fo=2, routed)           0.529    13.429    EE_FileMod/last_move_reg_i_12_n_0
+    SLICE_X84Y77         LUT6 (Prop_lut6_I0_O)        0.124    13.553 f  EE_FileMod/last_move_reg_i_4/O
+                         net (fo=14, routed)          0.579    14.132    EE_MotorSimMod/position_reg[3]_0
+    SLICE_X84Y76         LUT4 (Prop_lut4_I1_O)        0.124    14.256 r  EE_MotorSimMod/down_requests[6]_i_2/O
+                         net (fo=6, routed)           0.478    14.733    EE_MotorSimMod/down_requests[6]_i_2_n_0
+    SLICE_X86Y77         LUT5 (Prop_lut5_I3_O)        0.124    14.857 r  EE_MotorSimMod/down_requests[4]_i_1/O
+                         net (fo=1, routed)           0.000    14.857    EE_FileMod/down_requests_reg[7]_1[3]
+    SLICE_X86Y77         FDRE                                         r  EE_FileMod/down_requests_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    E3                                                0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          1.920    13.331    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.598    15.021    EE_FileMod/clk_IBUF_BUFG
+    SLICE_X86Y77         FDRE                                         r  EE_FileMod/down_requests_reg[4]/C
+                         clock pessimism              0.259    15.280    
+                         clock uncertainty           -0.035    15.244    
+    SLICE_X86Y77         FDRE (Setup_fdre_C_D)        0.031    15.275    EE_FileMod/down_requests_reg[4]
+  -------------------------------------------------------------------
+                         required time                         15.275    
+                         arrival time                         -14.857    
+  -------------------------------------------------------------------
+                         slack                                  0.418    
+
+Slack (MET) :             0.424ns  (required time - arrival time)
+  Source:                 EE_MotorSimMod/position_reg[1]/C
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_FileMod/down_requests_reg[3]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.594ns  (logic 1.079ns (23.485%)  route 3.515ns (76.515%))
+  Logic Levels:           5  (LUT4=1 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.023ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.018ns = ( 15.018 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.316ns = ( 10.316 - 5.000 ) 
     Clock Pessimism Removal (CPR):    0.275ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -532,29 +467,29 @@ Slack (MET) :             4.611ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.723     5.326    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y84         FDSE                                         r  EE_MotorSimMod/position_reg[0]/C
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.713    10.316    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X82Y77         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C  (IS_INVERTED)
   -------------------------------------------------------------------    -------------------
-    SLICE_X85Y84         FDSE (Prop_fdse_C_Q)         0.456     5.782 r  EE_MotorSimMod/position_reg[0]/Q
-                         net (fo=47, routed)          1.106     6.888    EE_MotorSimMod/Q[0]
-    SLICE_X87Y81         LUT3 (Prop_lut3_I0_O)        0.154     7.042 f  EE_MotorSimMod/up_requests[6]_i_4/O
-                         net (fo=4, routed)           1.012     8.054    EE_FileMod/position_reg[0]
-    SLICE_X86Y82         LUT6 (Prop_lut6_I0_O)        0.327     8.381 r  EE_FileMod/last_move_reg_i_9/O
-                         net (fo=1, routed)           0.644     9.026    EE_FileMod/last_move_reg_i_9_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I0_O)        0.124     9.150 f  EE_FileMod/last_move_reg_i_4/O
-                         net (fo=8, routed)           0.670     9.819    EE_FileMod/moving_reg
-    SLICE_X85Y83         LUT3 (Prop_lut3_I1_O)        0.150     9.969 r  EE_FileMod/current_state[1]_i_4/O
-                         net (fo=1, routed)           0.440    10.409    EE_FSMMod/FSM_DelayMod/position_reg[1]_0
-    SLICE_X84Y83         LUT6 (Prop_lut6_I4_O)        0.326    10.735 r  EE_FSMMod/FSM_DelayMod/current_state[1]_i_1/O
-                         net (fo=1, routed)           0.000    10.735    EE_FSMMod/FSM_DelayMod_n_0
-    SLICE_X84Y83         FDRE                                         r  EE_FSMMod/current_state_reg[1]/D
+    SLICE_X82Y77         FDRE (Prop_fdre_C_Q)         0.459    10.775 r  EE_MotorSimMod/position_reg[1]/Q
+                         net (fo=44, routed)          1.071    11.845    EE_FileMod/position_reg[3]_1[1]
+    SLICE_X86Y77         LUT5 (Prop_lut5_I1_O)        0.124    11.969 r  EE_FileMod/last_move_reg_i_26/O
+                         net (fo=1, routed)           0.806    12.776    EE_FileMod/last_move_reg_i_26_n_0
+    SLICE_X85Y77         LUT6 (Prop_lut6_I1_O)        0.124    12.900 r  EE_FileMod/last_move_reg_i_12/O
+                         net (fo=2, routed)           0.529    13.429    EE_FileMod/last_move_reg_i_12_n_0
+    SLICE_X84Y77         LUT6 (Prop_lut6_I0_O)        0.124    13.553 f  EE_FileMod/last_move_reg_i_4/O
+                         net (fo=14, routed)          0.579    14.132    EE_MotorSimMod/position_reg[3]_0
+    SLICE_X84Y76         LUT4 (Prop_lut4_I1_O)        0.124    14.256 r  EE_MotorSimMod/down_requests[6]_i_2/O
+                         net (fo=6, routed)           0.530    14.786    EE_MotorSimMod/down_requests[6]_i_2_n_0
+    SLICE_X84Y76         LUT5 (Prop_lut5_I3_O)        0.124    14.910 r  EE_MotorSimMod/down_requests[3]_i_1/O
+                         net (fo=1, routed)           0.000    14.910    EE_FileMod/down_requests_reg[7]_1[2]
+    SLICE_X84Y76         FDRE                                         r  EE_FileMod/down_requests_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -564,160 +499,30 @@ Slack (MET) :             4.611ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
                          net (fo=21, routed)          1.920    13.331    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.603    15.026    EE_FSMMod/clk_IBUF_BUFG
-    SLICE_X84Y83         FDRE                                         r  EE_FSMMod/current_state_reg[1]/C
-                         clock pessimism              0.275    15.301    
-                         clock uncertainty           -0.035    15.265    
-    SLICE_X84Y83         FDRE (Setup_fdre_C_D)        0.081    15.346    EE_FSMMod/current_state_reg[1]
+                         net (fo=175, routed)         1.595    15.018    EE_FileMod/clk_IBUF_BUFG
+    SLICE_X84Y76         FDRE                                         r  EE_FileMod/down_requests_reg[3]/C
+                         clock pessimism              0.275    15.293    
+                         clock uncertainty           -0.035    15.257    
+    SLICE_X84Y76         FDRE (Setup_fdre_C_D)        0.077    15.334    EE_FileMod/down_requests_reg[3]
   -------------------------------------------------------------------
-                         required time                         15.346    
-                         arrival time                         -10.735    
+                         required time                         15.334    
+                         arrival time                         -14.910    
   -------------------------------------------------------------------
-                         slack                                  4.611    
+                         slack                                  0.424    
 
-Slack (MET) :             4.617ns  (required time - arrival time)
+Slack (MET) :             0.465ns  (required time - arrival time)
   Source:                 EE_MotorSimMod/position_reg[1]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FSMMod/current_state_reg[0]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.402ns  (logic 1.575ns (29.154%)  route 3.827ns (70.846%))
-  Logic Levels:           5  (LUT2=1 LUT3=1 LUT5=1 LUT6=2)
-  Clock Path Skew:        -0.022ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.026ns = ( 15.026 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.325ns
-    Clock Pessimism Removal (CPR):    0.277ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.722     5.325    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y83         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X85Y83         FDRE (Prop_fdre_C_Q)         0.456     5.781 r  EE_MotorSimMod/position_reg[1]/Q
-                         net (fo=51, routed)          1.293     7.073    EE_MotorSimMod/Q[1]
-    SLICE_X89Y81         LUT3 (Prop_lut3_I2_O)        0.152     7.225 r  EE_MotorSimMod/next_position[2]_C_i_1/O
-                         net (fo=8, routed)           1.063     8.289    EE_FileMod/position_reg[2]_3
-    SLICE_X85Y82         LUT6 (Prop_lut6_I4_O)        0.332     8.621 r  EE_FileMod/last_move_reg_i_28/O
-                         net (fo=1, routed)           0.151     8.772    EE_FileMod/last_move_reg_i_28_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I5_O)        0.124     8.896 r  EE_FileMod/last_move_reg_i_15/O
-                         net (fo=3, routed)           0.850     9.746    EE_FileMod/current_state_reg[1]_0
-    SLICE_X84Y83         LUT2 (Prop_lut2_I1_O)        0.156     9.902 r  EE_FileMod/current_state[1]_i_2/O
-                         net (fo=2, routed)           0.470    10.372    EE_FileMod/current_state_reg[0]
-    SLICE_X84Y83         LUT5 (Prop_lut5_I2_O)        0.355    10.727 r  EE_FileMod/current_state[0]_i_1/O
-                         net (fo=1, routed)           0.000    10.727    EE_FSMMod/D[0]
-    SLICE_X84Y83         FDRE                                         r  EE_FSMMod/current_state_reg[0]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    E3                                                0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          1.920    13.331    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.603    15.026    EE_FSMMod/clk_IBUF_BUFG
-    SLICE_X84Y83         FDRE                                         r  EE_FSMMod/current_state_reg[0]/C
-                         clock pessimism              0.277    15.303    
-                         clock uncertainty           -0.035    15.267    
-    SLICE_X84Y83         FDRE (Setup_fdre_C_D)        0.077    15.344    EE_FSMMod/current_state_reg[0]
-  -------------------------------------------------------------------
-                         required time                         15.344    
-                         arrival time                         -10.727    
-  -------------------------------------------------------------------
-                         slack                                  4.617    
-
-Slack (MET) :             4.629ns  (required time - arrival time)
-  Source:                 EE_MotorSimMod/position_reg[0]/C
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FileMod/up_requests_reg[4]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.340ns  (logic 1.303ns (24.399%)  route 4.037ns (75.601%))
-  Logic Levels:           5  (LUT3=1 LUT4=1 LUT5=1 LUT6=2)
-  Clock Path Skew:        -0.042ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.025ns = ( 15.025 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.326ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.723     5.326    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y84         FDSE                                         r  EE_MotorSimMod/position_reg[0]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X85Y84         FDSE (Prop_fdse_C_Q)         0.456     5.782 r  EE_MotorSimMod/position_reg[0]/Q
-                         net (fo=47, routed)          1.106     6.888    EE_MotorSimMod/Q[0]
-    SLICE_X87Y81         LUT3 (Prop_lut3_I0_O)        0.154     7.042 f  EE_MotorSimMod/up_requests[6]_i_4/O
-                         net (fo=4, routed)           1.012     8.054    EE_FileMod/position_reg[0]
-    SLICE_X86Y82         LUT6 (Prop_lut6_I0_O)        0.327     8.381 r  EE_FileMod/last_move_reg_i_9/O
-                         net (fo=1, routed)           0.644     9.026    EE_FileMod/last_move_reg_i_9_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I0_O)        0.124     9.150 f  EE_FileMod/last_move_reg_i_4/O
-                         net (fo=8, routed)           0.670     9.819    EE_FileMod/moving_reg
-    SLICE_X85Y83         LUT4 (Prop_lut4_I3_O)        0.124     9.943 r  EE_FileMod/up_requests[6]_i_3/O
-                         net (fo=6, routed)           0.605    10.548    EE_MotorSimMod/position_reg[3]_1
-    SLICE_X89Y81         LUT5 (Prop_lut5_I0_O)        0.118    10.666 r  EE_MotorSimMod/up_requests[4]_i_1/O
-                         net (fo=1, routed)           0.000    10.666    EE_FileMod/D[2]
-    SLICE_X89Y81         FDRE                                         r  EE_FileMod/up_requests_reg[4]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    E3                                                0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          1.920    13.331    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.602    15.025    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X89Y81         FDRE                                         r  EE_FileMod/up_requests_reg[4]/C
-                         clock pessimism              0.259    15.284    
-                         clock uncertainty           -0.035    15.248    
-    SLICE_X89Y81         FDRE (Setup_fdre_C_D)        0.047    15.295    EE_FileMod/up_requests_reg[4]
-  -------------------------------------------------------------------
-                         required time                         15.295    
-                         arrival time                         -10.666    
-  -------------------------------------------------------------------
-                         slack                                  4.629    
-
-Slack (MET) :             4.640ns  (required time - arrival time)
-  Source:                 EE_MotorSimMod/position_reg[0]/C
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            EE_FileMod/down_requests_reg[6]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.364ns  (logic 1.309ns (24.405%)  route 4.055ns (75.595%))
-  Logic Levels:           5  (LUT2=1 LUT3=1 LUT6=3)
-  Clock Path Skew:        -0.040ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.027ns = ( 15.027 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.326ns
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.494ns  (logic 1.079ns (24.008%)  route 3.415ns (75.992%))
+  Logic Levels:           5  (LUT4=1 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.020ns = ( 15.020 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.316ns = ( 10.316 - 5.000 ) 
     Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -727,29 +532,29 @@ Slack (MET) :             4.640ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.723     5.326    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y84         FDSE                                         r  EE_MotorSimMod/position_reg[0]/C
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.713    10.316    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X82Y77         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C  (IS_INVERTED)
   -------------------------------------------------------------------    -------------------
-    SLICE_X85Y84         FDSE (Prop_fdse_C_Q)         0.456     5.782 f  EE_MotorSimMod/position_reg[0]/Q
-                         net (fo=47, routed)          1.106     6.888    EE_MotorSimMod/Q[0]
-    SLICE_X87Y81         LUT3 (Prop_lut3_I0_O)        0.154     7.042 r  EE_MotorSimMod/up_requests[6]_i_4/O
-                         net (fo=4, routed)           1.012     8.054    EE_FileMod/position_reg[0]
-    SLICE_X86Y82         LUT6 (Prop_lut6_I0_O)        0.327     8.381 f  EE_FileMod/last_move_reg_i_9/O
-                         net (fo=1, routed)           0.644     9.026    EE_FileMod/last_move_reg_i_9_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I0_O)        0.124     9.150 r  EE_FileMod/last_move_reg_i_4/O
-                         net (fo=8, routed)           0.478     9.627    EE_FSMMod/down_requests_reg[5]
-    SLICE_X84Y84         LUT2 (Prop_lut2_I1_O)        0.124     9.751 f  EE_FSMMod/down_requests[6]_i_2/O
-                         net (fo=14, routed)          0.814    10.565    EE_MotorSimMod/position_reg[2]_0
-    SLICE_X88Y82         LUT6 (Prop_lut6_I1_O)        0.124    10.689 r  EE_MotorSimMod/down_requests[6]_i_1/O
-                         net (fo=1, routed)           0.000    10.689    EE_FileMod/position_reg[1][3]
-    SLICE_X88Y82         FDRE                                         r  EE_FileMod/down_requests_reg[6]/D
+    SLICE_X82Y77         FDRE (Prop_fdre_C_Q)         0.459    10.775 r  EE_MotorSimMod/position_reg[1]/Q
+                         net (fo=44, routed)          1.071    11.845    EE_FileMod/position_reg[3]_1[1]
+    SLICE_X86Y77         LUT5 (Prop_lut5_I1_O)        0.124    11.969 r  EE_FileMod/last_move_reg_i_26/O
+                         net (fo=1, routed)           0.806    12.776    EE_FileMod/last_move_reg_i_26_n_0
+    SLICE_X85Y77         LUT6 (Prop_lut6_I1_O)        0.124    12.900 r  EE_FileMod/last_move_reg_i_12/O
+                         net (fo=2, routed)           0.529    13.429    EE_FileMod/last_move_reg_i_12_n_0
+    SLICE_X84Y77         LUT6 (Prop_lut6_I0_O)        0.124    13.553 f  EE_FileMod/last_move_reg_i_4/O
+                         net (fo=14, routed)          0.579    14.132    EE_MotorSimMod/position_reg[3]_0
+    SLICE_X84Y76         LUT4 (Prop_lut4_I1_O)        0.124    14.256 r  EE_MotorSimMod/down_requests[6]_i_2/O
+                         net (fo=6, routed)           0.430    14.686    EE_MotorSimMod/down_requests[6]_i_2_n_0
+    SLICE_X89Y76         LUT6 (Prop_lut6_I3_O)        0.124    14.810 r  EE_MotorSimMod/down_requests[6]_i_1/O
+                         net (fo=1, routed)           0.000    14.810    EE_FileMod/down_requests_reg[7]_1[5]
+    SLICE_X89Y76         FDRE                                         r  EE_FileMod/down_requests_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -759,31 +564,31 @@ Slack (MET) :             4.640ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
                          net (fo=21, routed)          1.920    13.331    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.604    15.027    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X88Y82         FDRE                                         r  EE_FileMod/down_requests_reg[6]/C
-                         clock pessimism              0.259    15.286    
-                         clock uncertainty           -0.035    15.250    
-    SLICE_X88Y82         FDRE (Setup_fdre_C_D)        0.079    15.329    EE_FileMod/down_requests_reg[6]
+                         net (fo=175, routed)         1.597    15.020    EE_FileMod/clk_IBUF_BUFG
+    SLICE_X89Y76         FDRE                                         r  EE_FileMod/down_requests_reg[6]/C
+                         clock pessimism              0.259    15.279    
+                         clock uncertainty           -0.035    15.243    
+    SLICE_X89Y76         FDRE (Setup_fdre_C_D)        0.032    15.275    EE_FileMod/down_requests_reg[6]
   -------------------------------------------------------------------
-                         required time                         15.329    
-                         arrival time                         -10.689    
+                         required time                         15.275    
+                         arrival time                         -14.810    
   -------------------------------------------------------------------
-                         slack                                  4.640    
+                         slack                                  0.465    
 
-Slack (MET) :             4.682ns  (required time - arrival time)
-  Source:                 EE_MotorSimMod/position_reg[0]/C
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FileMod/down_requests_reg[3]/D
+Slack (MET) :             0.468ns  (required time - arrival time)
+  Source:                 EE_MotorSimMod/position_reg[1]/C
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_FileMod/down_requests_reg[2]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.269ns  (logic 1.309ns (24.845%)  route 3.960ns (75.155%))
-  Logic Levels:           5  (LUT2=1 LUT3=1 LUT6=3)
-  Clock Path Skew:        -0.043ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.024ns = ( 15.024 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.326ns
-    Clock Pessimism Removal (CPR):    0.259ns
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.551ns  (logic 1.079ns (23.709%)  route 3.472ns (76.291%))
+  Logic Levels:           5  (LUT4=1 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.025ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.016ns = ( 15.016 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.316ns = ( 10.316 - 5.000 ) 
+    Clock Pessimism Removal (CPR):    0.275ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -792,29 +597,29 @@ Slack (MET) :             4.682ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.723     5.326    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y84         FDSE                                         r  EE_MotorSimMod/position_reg[0]/C
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.713    10.316    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X82Y77         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C  (IS_INVERTED)
   -------------------------------------------------------------------    -------------------
-    SLICE_X85Y84         FDSE (Prop_fdse_C_Q)         0.456     5.782 f  EE_MotorSimMod/position_reg[0]/Q
-                         net (fo=47, routed)          1.106     6.888    EE_MotorSimMod/Q[0]
-    SLICE_X87Y81         LUT3 (Prop_lut3_I0_O)        0.154     7.042 r  EE_MotorSimMod/up_requests[6]_i_4/O
-                         net (fo=4, routed)           1.012     8.054    EE_FileMod/position_reg[0]
-    SLICE_X86Y82         LUT6 (Prop_lut6_I0_O)        0.327     8.381 f  EE_FileMod/last_move_reg_i_9/O
-                         net (fo=1, routed)           0.644     9.026    EE_FileMod/last_move_reg_i_9_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I0_O)        0.124     9.150 r  EE_FileMod/last_move_reg_i_4/O
-                         net (fo=8, routed)           0.478     9.627    EE_FSMMod/down_requests_reg[5]
-    SLICE_X84Y84         LUT2 (Prop_lut2_I1_O)        0.124     9.751 f  EE_FSMMod/down_requests[6]_i_2/O
-                         net (fo=14, routed)          0.719    10.470    EE_MotorSimMod/position_reg[2]_0
-    SLICE_X87Y80         LUT6 (Prop_lut6_I4_O)        0.124    10.594 r  EE_MotorSimMod/down_requests[3]_i_1/O
-                         net (fo=1, routed)           0.000    10.594    EE_FileMod/position_reg[1][1]
-    SLICE_X87Y80         FDRE                                         r  EE_FileMod/down_requests_reg[3]/D
+    SLICE_X82Y77         FDRE (Prop_fdre_C_Q)         0.459    10.775 r  EE_MotorSimMod/position_reg[1]/Q
+                         net (fo=44, routed)          1.071    11.845    EE_FileMod/position_reg[3]_1[1]
+    SLICE_X86Y77         LUT5 (Prop_lut5_I1_O)        0.124    11.969 r  EE_FileMod/last_move_reg_i_26/O
+                         net (fo=1, routed)           0.806    12.776    EE_FileMod/last_move_reg_i_26_n_0
+    SLICE_X85Y77         LUT6 (Prop_lut6_I1_O)        0.124    12.900 r  EE_FileMod/last_move_reg_i_12/O
+                         net (fo=2, routed)           0.529    13.429    EE_FileMod/last_move_reg_i_12_n_0
+    SLICE_X84Y77         LUT6 (Prop_lut6_I0_O)        0.124    13.553 f  EE_FileMod/last_move_reg_i_4/O
+                         net (fo=14, routed)          0.579    14.132    EE_MotorSimMod/position_reg[3]_0
+    SLICE_X84Y76         LUT4 (Prop_lut4_I1_O)        0.124    14.256 r  EE_MotorSimMod/down_requests[6]_i_2/O
+                         net (fo=6, routed)           0.487    14.743    EE_MotorSimMod/down_requests[6]_i_2_n_0
+    SLICE_X84Y75         LUT6 (Prop_lut6_I1_O)        0.124    14.867 r  EE_MotorSimMod/down_requests[2]_i_1/O
+                         net (fo=1, routed)           0.000    14.867    EE_FileMod/down_requests_reg[7]_1[1]
+    SLICE_X84Y75         FDRE                                         r  EE_FileMod/down_requests_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -824,30 +629,95 @@ Slack (MET) :             4.682ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
                          net (fo=21, routed)          1.920    13.331    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.601    15.024    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X87Y80         FDRE                                         r  EE_FileMod/down_requests_reg[3]/C
-                         clock pessimism              0.259    15.283    
-                         clock uncertainty           -0.035    15.247    
-    SLICE_X87Y80         FDRE (Setup_fdre_C_D)        0.029    15.276    EE_FileMod/down_requests_reg[3]
+                         net (fo=175, routed)         1.593    15.016    EE_FileMod/clk_IBUF_BUFG
+    SLICE_X84Y75         FDRE                                         r  EE_FileMod/down_requests_reg[2]/C
+                         clock pessimism              0.275    15.291    
+                         clock uncertainty           -0.035    15.255    
+    SLICE_X84Y75         FDRE (Setup_fdre_C_D)        0.079    15.334    EE_FileMod/down_requests_reg[2]
   -------------------------------------------------------------------
-                         required time                         15.276    
-                         arrival time                         -10.594    
+                         required time                         15.334    
+                         arrival time                         -14.867    
   -------------------------------------------------------------------
-                         slack                                  4.682    
+                         slack                                  0.468    
 
-Slack (MET) :             4.756ns  (required time - arrival time)
-  Source:                 EE_MotorSimMod/position_reg[0]/C
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             0.469ns  (required time - arrival time)
+  Source:                 EE_MotorSimMod/position_reg[1]/C
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_FileMod/down_requests_reg[1]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.552ns  (logic 1.079ns (23.704%)  route 3.473ns (76.296%))
+  Logic Levels:           5  (LUT4=1 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.025ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.016ns = ( 15.016 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.316ns = ( 10.316 - 5.000 ) 
+    Clock Pessimism Removal (CPR):    0.275ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.713    10.316    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X82Y77         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C  (IS_INVERTED)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X82Y77         FDRE (Prop_fdre_C_Q)         0.459    10.775 r  EE_MotorSimMod/position_reg[1]/Q
+                         net (fo=44, routed)          1.071    11.845    EE_FileMod/position_reg[3]_1[1]
+    SLICE_X86Y77         LUT5 (Prop_lut5_I1_O)        0.124    11.969 r  EE_FileMod/last_move_reg_i_26/O
+                         net (fo=1, routed)           0.806    12.776    EE_FileMod/last_move_reg_i_26_n_0
+    SLICE_X85Y77         LUT6 (Prop_lut6_I1_O)        0.124    12.900 r  EE_FileMod/last_move_reg_i_12/O
+                         net (fo=2, routed)           0.529    13.429    EE_FileMod/last_move_reg_i_12_n_0
+    SLICE_X84Y77         LUT6 (Prop_lut6_I0_O)        0.124    13.553 f  EE_FileMod/last_move_reg_i_4/O
+                         net (fo=14, routed)          0.579    14.132    EE_MotorSimMod/position_reg[3]_0
+    SLICE_X84Y76         LUT4 (Prop_lut4_I1_O)        0.124    14.256 r  EE_MotorSimMod/down_requests[6]_i_2/O
+                         net (fo=6, routed)           0.488    14.744    EE_MotorSimMod/down_requests[6]_i_2_n_0
+    SLICE_X84Y75         LUT5 (Prop_lut5_I4_O)        0.124    14.868 r  EE_MotorSimMod/down_requests[1]_i_1/O
+                         net (fo=1, routed)           0.000    14.868    EE_FileMod/down_requests_reg[7]_1[0]
+    SLICE_X84Y75         FDRE                                         r  EE_FileMod/down_requests_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    E3                                                0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          1.920    13.331    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.593    15.016    EE_FileMod/clk_IBUF_BUFG
+    SLICE_X84Y75         FDRE                                         r  EE_FileMod/down_requests_reg[1]/C
+                         clock pessimism              0.275    15.291    
+                         clock uncertainty           -0.035    15.255    
+    SLICE_X84Y75         FDRE (Setup_fdre_C_D)        0.081    15.336    EE_FileMod/down_requests_reg[1]
+  -------------------------------------------------------------------
+                         required time                         15.336    
+                         arrival time                         -14.868    
+  -------------------------------------------------------------------
+                         slack                                  0.469    
+
+Slack (MET) :             0.496ns  (required time - arrival time)
+  Source:                 EE_MotorSimMod/position_reg[1]/C
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            EE_FileMod/up_requests_reg[6]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        5.200ns  (logic 1.309ns (25.172%)  route 3.891ns (74.828%))
-  Logic Levels:           5  (LUT3=1 LUT4=1 LUT6=3)
-  Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.028ns = ( 15.028 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.326ns
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.467ns  (logic 1.079ns (24.156%)  route 3.388ns (75.844%))
+  Logic Levels:           5  (LUT2=1 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.033ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.024ns = ( 15.024 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.316ns = ( 10.316 - 5.000 ) 
     Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -857,29 +727,29 @@ Slack (MET) :             4.756ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          2.025     3.506    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.723     5.326    EE_MotorSimMod/clk_IBUF_BUFG
-    SLICE_X85Y84         FDSE                                         r  EE_MotorSimMod/position_reg[0]/C
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.713    10.316    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X82Y77         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C  (IS_INVERTED)
   -------------------------------------------------------------------    -------------------
-    SLICE_X85Y84         FDSE (Prop_fdse_C_Q)         0.456     5.782 r  EE_MotorSimMod/position_reg[0]/Q
-                         net (fo=47, routed)          1.106     6.888    EE_MotorSimMod/Q[0]
-    SLICE_X87Y81         LUT3 (Prop_lut3_I0_O)        0.154     7.042 f  EE_MotorSimMod/up_requests[6]_i_4/O
-                         net (fo=4, routed)           1.012     8.054    EE_FileMod/position_reg[0]
-    SLICE_X86Y82         LUT6 (Prop_lut6_I0_O)        0.327     8.381 r  EE_FileMod/last_move_reg_i_9/O
-                         net (fo=1, routed)           0.644     9.026    EE_FileMod/last_move_reg_i_9_n_0
-    SLICE_X85Y82         LUT6 (Prop_lut6_I0_O)        0.124     9.150 f  EE_FileMod/last_move_reg_i_4/O
-                         net (fo=8, routed)           0.670     9.819    EE_FileMod/moving_reg
-    SLICE_X85Y83         LUT4 (Prop_lut4_I3_O)        0.124     9.943 r  EE_FileMod/up_requests[6]_i_3/O
-                         net (fo=6, routed)           0.459    10.402    EE_FileMod/up_requests_reg[2]_0
-    SLICE_X87Y83         LUT6 (Prop_lut6_I4_O)        0.124    10.526 r  EE_FileMod/up_requests[6]_i_1/O
-                         net (fo=1, routed)           0.000    10.526    EE_FileMod/up_requests0[6]
-    SLICE_X87Y83         FDRE                                         r  EE_FileMod/up_requests_reg[6]/D
+    SLICE_X82Y77         FDRE (Prop_fdre_C_Q)         0.459    10.775 r  EE_MotorSimMod/position_reg[1]/Q
+                         net (fo=44, routed)          1.071    11.845    EE_FileMod/position_reg[3]_1[1]
+    SLICE_X86Y77         LUT5 (Prop_lut5_I1_O)        0.124    11.969 r  EE_FileMod/last_move_reg_i_26/O
+                         net (fo=1, routed)           0.806    12.776    EE_FileMod/last_move_reg_i_26_n_0
+    SLICE_X85Y77         LUT6 (Prop_lut6_I1_O)        0.124    12.900 r  EE_FileMod/last_move_reg_i_12/O
+                         net (fo=2, routed)           0.529    13.429    EE_FileMod/last_move_reg_i_12_n_0
+    SLICE_X84Y77         LUT6 (Prop_lut6_I0_O)        0.124    13.553 f  EE_FileMod/last_move_reg_i_4/O
+                         net (fo=14, routed)          0.504    14.056    EE_FileMod/next_position_reg[0]_C_0
+    SLICE_X89Y78         LUT2 (Prop_lut2_I0_O)        0.124    14.180 f  EE_FileMod/last_move_reg_i_5/O
+                         net (fo=7, routed)           0.478    14.659    EE_FileMod/up_requests_reg[6]_0
+    SLICE_X87Y79         LUT5 (Prop_lut5_I1_O)        0.124    14.783 r  EE_FileMod/up_requests[6]_i_1/O
+                         net (fo=1, routed)           0.000    14.783    EE_FileMod/up_requests0[6]
+    SLICE_X87Y79         FDRE                                         r  EE_FileMod/up_requests_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -889,16 +759,146 @@ Slack (MET) :             4.756ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
                          net (fo=21, routed)          1.920    13.331    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         1.605    15.028    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X87Y83         FDRE                                         r  EE_FileMod/up_requests_reg[6]/C
-                         clock pessimism              0.259    15.287    
-                         clock uncertainty           -0.035    15.251    
-    SLICE_X87Y83         FDRE (Setup_fdre_C_D)        0.031    15.282    EE_FileMod/up_requests_reg[6]
+                         net (fo=175, routed)         1.601    15.024    EE_FileMod/clk_IBUF_BUFG
+    SLICE_X87Y79         FDRE                                         r  EE_FileMod/up_requests_reg[6]/C
+                         clock pessimism              0.259    15.283    
+                         clock uncertainty           -0.035    15.247    
+    SLICE_X87Y79         FDRE (Setup_fdre_C_D)        0.031    15.278    EE_FileMod/up_requests_reg[6]
   -------------------------------------------------------------------
-                         required time                         15.282    
-                         arrival time                         -10.526    
+                         required time                         15.278    
+                         arrival time                         -14.783    
   -------------------------------------------------------------------
-                         slack                                  4.756    
+                         slack                                  0.496    
+
+Slack (MET) :             0.499ns  (required time - arrival time)
+  Source:                 EE_MotorSimMod/position_reg[1]/C
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_FileMod/up_requests_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.462ns  (logic 1.079ns (24.182%)  route 3.383ns (75.818%))
+  Logic Levels:           5  (LUT2=1 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.033ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.024ns = ( 15.024 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.316ns = ( 10.316 - 5.000 ) 
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.713    10.316    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X82Y77         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C  (IS_INVERTED)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X82Y77         FDRE (Prop_fdre_C_Q)         0.459    10.775 r  EE_MotorSimMod/position_reg[1]/Q
+                         net (fo=44, routed)          1.071    11.845    EE_FileMod/position_reg[3]_1[1]
+    SLICE_X86Y77         LUT5 (Prop_lut5_I1_O)        0.124    11.969 r  EE_FileMod/last_move_reg_i_26/O
+                         net (fo=1, routed)           0.806    12.776    EE_FileMod/last_move_reg_i_26_n_0
+    SLICE_X85Y77         LUT6 (Prop_lut6_I1_O)        0.124    12.900 r  EE_FileMod/last_move_reg_i_12/O
+                         net (fo=2, routed)           0.529    13.429    EE_FileMod/last_move_reg_i_12_n_0
+    SLICE_X84Y77         LUT6 (Prop_lut6_I0_O)        0.124    13.553 f  EE_FileMod/last_move_reg_i_4/O
+                         net (fo=14, routed)          0.504    14.056    EE_FileMod/next_position_reg[0]_C_0
+    SLICE_X89Y78         LUT2 (Prop_lut2_I0_O)        0.124    14.180 f  EE_FileMod/last_move_reg_i_5/O
+                         net (fo=7, routed)           0.473    14.654    EE_MotorSimMod/position_reg[2]_2
+    SLICE_X87Y79         LUT6 (Prop_lut6_I1_O)        0.124    14.778 r  EE_MotorSimMod/up_requests[4]_i_1/O
+                         net (fo=1, routed)           0.000    14.778    EE_FileMod/D[3]
+    SLICE_X87Y79         FDRE                                         r  EE_FileMod/up_requests_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    E3                                                0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          1.920    13.331    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.601    15.024    EE_FileMod/clk_IBUF_BUFG
+    SLICE_X87Y79         FDRE                                         r  EE_FileMod/up_requests_reg[4]/C
+                         clock pessimism              0.259    15.283    
+                         clock uncertainty           -0.035    15.247    
+    SLICE_X87Y79         FDRE (Setup_fdre_C_D)        0.029    15.276    EE_FileMod/up_requests_reg[4]
+  -------------------------------------------------------------------
+                         required time                         15.276    
+                         arrival time                         -14.778    
+  -------------------------------------------------------------------
+                         slack                                  0.499    
+
+Slack (MET) :             0.504ns  (required time - arrival time)
+  Source:                 EE_MotorSimMod/position_reg[1]/C
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_FileMod/up_requests_reg[2]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        4.459ns  (logic 1.079ns (24.198%)  route 3.380ns (75.802%))
+  Logic Levels:           5  (LUT2=1 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.033ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.024ns = ( 15.024 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.316ns = ( 10.316 - 5.000 ) 
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     6.482 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          2.025     8.506    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     8.602 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.713    10.316    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X82Y77         FDRE                                         r  EE_MotorSimMod/position_reg[1]/C  (IS_INVERTED)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X82Y77         FDRE (Prop_fdre_C_Q)         0.459    10.775 r  EE_MotorSimMod/position_reg[1]/Q
+                         net (fo=44, routed)          1.071    11.845    EE_FileMod/position_reg[3]_1[1]
+    SLICE_X86Y77         LUT5 (Prop_lut5_I1_O)        0.124    11.969 r  EE_FileMod/last_move_reg_i_26/O
+                         net (fo=1, routed)           0.806    12.776    EE_FileMod/last_move_reg_i_26_n_0
+    SLICE_X85Y77         LUT6 (Prop_lut6_I1_O)        0.124    12.900 r  EE_FileMod/last_move_reg_i_12/O
+                         net (fo=2, routed)           0.529    13.429    EE_FileMod/last_move_reg_i_12_n_0
+    SLICE_X84Y77         LUT6 (Prop_lut6_I0_O)        0.124    13.553 f  EE_FileMod/last_move_reg_i_4/O
+                         net (fo=14, routed)          0.504    14.056    EE_FileMod/next_position_reg[0]_C_0
+    SLICE_X89Y78         LUT2 (Prop_lut2_I0_O)        0.124    14.180 f  EE_FileMod/last_move_reg_i_5/O
+                         net (fo=7, routed)           0.470    14.651    EE_MotorSimMod/position_reg[2]_2
+    SLICE_X87Y79         LUT6 (Prop_lut6_I2_O)        0.124    14.775 r  EE_MotorSimMod/up_requests[2]_i_1/O
+                         net (fo=1, routed)           0.000    14.775    EE_FileMod/D[1]
+    SLICE_X87Y79         FDRE                                         r  EE_FileMod/up_requests_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    E3                                                0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          1.920    13.331    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         1.601    15.024    EE_FileMod/clk_IBUF_BUFG
+    SLICE_X87Y79         FDRE                                         r  EE_FileMod/up_requests_reg[2]/C
+                         clock pessimism              0.259    15.283    
+                         clock uncertainty           -0.035    15.247    
+    SLICE_X87Y79         FDRE (Setup_fdre_C_D)        0.031    15.278    EE_FileMod/up_requests_reg[2]
+  -------------------------------------------------------------------
+                         required time                         15.278    
+                         arrival time                         -14.775    
+  -------------------------------------------------------------------
+                         slack                                  0.504    
 
 
 
@@ -906,7 +906,58 @@ Slack (MET) :             4.756ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.180ns  (arrival time - required time)
+Slack (MET) :             0.115ns  (arrival time - required time)
+  Source:                 EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_MotorSimMod/__MotorSim_HelperDelay/timeout_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.249ns  (logic 0.186ns (74.636%)  route 0.063ns (25.364%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.029ns
+    Source Clock Delay      (SCD):    1.513ns
+    Clock Pessimism Removal (CPR):    0.502ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.644     0.894    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.594     1.513    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X81Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X81Y80         FDRE (Prop_fdre_C_Q)         0.141     1.654 f  EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[2]/Q
+                         net (fo=3, routed)           0.063     1.718    EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg_n_0_[2]
+    SLICE_X80Y80         LUT5 (Prop_lut5_I3_O)        0.045     1.763 r  EE_MotorSimMod/__MotorSim_HelperDelay/timeout_i_1/O
+                         net (fo=1, routed)           0.000     1.763    EE_MotorSimMod/__MotorSim_HelperDelay/timeout_i_1_n_0
+    SLICE_X80Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/timeout_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.699     1.136    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.864     2.029    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X80Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/timeout_reg/C
+                         clock pessimism             -0.502     1.526    
+    SLICE_X80Y80         FDRE (Hold_fdre_C_D)         0.121     1.647    EE_MotorSimMod/__MotorSim_HelperDelay/timeout_reg
+  -------------------------------------------------------------------
+                         required time                         -1.647    
+                         arrival time                           1.763    
+  -------------------------------------------------------------------
+                         slack                                  0.115    
+
+Slack (MET) :             0.163ns  (arrival time - required time)
   Source:                 EE_FSMMod/FSM_DelayMod/counter_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            EE_FSMMod/FSM_DelayMod/timeout_reg/D
@@ -914,12 +965,12 @@ Slack (MET) :             0.180ns  (arrival time - required time)
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.284ns  (logic 0.186ns (65.521%)  route 0.098ns (34.479%))
+  Data Path Delay:        0.296ns  (logic 0.186ns (62.752%)  route 0.110ns (37.248%))
   Logic Levels:           1  (LUT5=1)
   Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.038ns
-    Source Clock Delay      (SCD):    1.521ns
-    Clock Pessimism Removal (CPR):    0.503ns
+    Destination Clock Delay (DCD):    2.027ns
+    Source Clock Delay      (SCD):    1.512ns
+    Clock Pessimism Removal (CPR):    0.501ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -930,14 +981,14 @@ Slack (MET) :             0.180ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
                          net (fo=21, routed)          0.644     0.894    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.602     1.521    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
-    SLICE_X82Y86         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[0]/C
+                         net (fo=175, routed)         0.593     1.512    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
+    SLICE_X85Y74         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X82Y86         FDRE (Prop_fdre_C_Q)         0.141     1.662 r  EE_FSMMod/FSM_DelayMod/counter_reg[0]/Q
-                         net (fo=5, routed)           0.098     1.760    EE_FSMMod/FSM_DelayMod/counter_reg_n_0_[0]
-    SLICE_X83Y86         LUT5 (Prop_lut5_I2_O)        0.045     1.805 r  EE_FSMMod/FSM_DelayMod/timeout_i_1__0/O
-                         net (fo=1, routed)           0.000     1.805    EE_FSMMod/FSM_DelayMod/timeout_i_1__0_n_0
-    SLICE_X83Y86         FDRE                                         r  EE_FSMMod/FSM_DelayMod/timeout_reg/D
+    SLICE_X85Y74         FDRE (Prop_fdre_C_Q)         0.141     1.653 r  EE_FSMMod/FSM_DelayMod/counter_reg[0]/Q
+                         net (fo=5, routed)           0.110     1.764    EE_FSMMod/FSM_DelayMod/counter_reg_n_0_[0]
+    SLICE_X84Y74         LUT5 (Prop_lut5_I2_O)        0.045     1.809 r  EE_FSMMod/FSM_DelayMod/timeout_i_1__1/O
+                         net (fo=1, routed)           0.000     1.809    EE_FSMMod/FSM_DelayMod/timeout_i_1__1_n_0
+    SLICE_X84Y74         FDRE                                         r  EE_FSMMod/FSM_DelayMod/timeout_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -947,29 +998,233 @@ Slack (MET) :             0.180ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
                          net (fo=21, routed)          0.699     1.136    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.873     2.038    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
-    SLICE_X83Y86         FDRE                                         r  EE_FSMMod/FSM_DelayMod/timeout_reg/C
-                         clock pessimism             -0.503     1.534    
-    SLICE_X83Y86         FDRE (Hold_fdre_C_D)         0.091     1.625    EE_FSMMod/FSM_DelayMod/timeout_reg
+                         net (fo=175, routed)         0.862     2.027    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
+    SLICE_X84Y74         FDRE                                         r  EE_FSMMod/FSM_DelayMod/timeout_reg/C
+                         clock pessimism             -0.501     1.525    
+    SLICE_X84Y74         FDRE (Hold_fdre_C_D)         0.120     1.645    EE_FSMMod/FSM_DelayMod/timeout_reg
   -------------------------------------------------------------------
-                         required time                         -1.625    
-                         arrival time                           1.805    
+                         required time                         -1.645    
+                         arrival time                           1.809    
   -------------------------------------------------------------------
-                         slack                                  0.180    
+                         slack                                  0.163    
 
-Slack (MET) :             0.227ns  (arrival time - required time)
-  Source:                 EE_FileMod/stop_requests_reg[4]/C
+Slack (MET) :             0.228ns  (arrival time - required time)
+  Source:                 EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[2]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FileMod/stop_requests_reg[4]/D
+  Destination:            EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[7]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.319ns  (logic 0.186ns (58.308%)  route 0.133ns (41.692%))
-  Logic Levels:           1  (LUT6=1)
+  Data Path Delay:        0.363ns  (logic 0.209ns (57.506%)  route 0.154ns (42.494%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.014ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.022ns
+    Source Clock Delay      (SCD):    1.506ns
+    Clock Pessimism Removal (CPR):    0.501ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.644     0.894    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.587     1.506    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X78Y75         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X78Y75         FDRE (Prop_fdre_C_Q)         0.164     1.670 r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[2]/Q
+                         net (fo=33, routed)          0.154     1.825    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg_n_0_[2]
+    SLICE_X78Y76         LUT5 (Prop_lut5_I3_O)        0.045     1.870 r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[7]_i_1__1/O
+                         net (fo=1, routed)           0.000     1.870    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[7]_i_1__1_n_0
+    SLICE_X78Y76         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.699     1.136    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.857     2.022    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X78Y76         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[7]/C
+                         clock pessimism             -0.501     1.520    
+    SLICE_X78Y76         FDRE (Hold_fdre_C_D)         0.121     1.641    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[7]
+  -------------------------------------------------------------------
+                         required time                         -1.641    
+                         arrival time                           1.870    
+  -------------------------------------------------------------------
+                         slack                                  0.228    
+
+Slack (MET) :             0.231ns  (arrival time - required time)
+  Source:                 EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[30]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.365ns  (logic 0.209ns (57.189%)  route 0.156ns (42.811%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.026ns
+    Source Clock Delay      (SCD):    1.511ns
+    Clock Pessimism Removal (CPR):    0.501ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.644     0.894    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.592     1.511    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X78Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X78Y80         FDRE (Prop_fdre_C_Q)         0.164     1.675 r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[0]/Q
+                         net (fo=34, routed)          0.156     1.832    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg_n_0_[0]
+    SLICE_X78Y79         LUT5 (Prop_lut5_I1_O)        0.045     1.877 r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[30]_i_1__0/O
+                         net (fo=1, routed)           0.000     1.877    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[30]_i_1__0_n_0
+    SLICE_X78Y79         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[30]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.699     1.136    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.861     2.026    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X78Y79         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[30]/C
+                         clock pessimism             -0.501     1.524    
+    SLICE_X78Y79         FDRE (Hold_fdre_C_D)         0.121     1.645    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[30]
+  -------------------------------------------------------------------
+                         required time                         -1.645    
+                         arrival time                           1.877    
+  -------------------------------------------------------------------
+                         slack                                  0.231    
+
+Slack (MET) :             0.242ns  (arrival time - required time)
+  Source:                 EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[28]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.209ns (52.071%)  route 0.192ns (47.929%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.038ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.029ns
+    Source Clock Delay      (SCD):    1.511ns
+    Clock Pessimism Removal (CPR):    0.479ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.644     0.894    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.592     1.511    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X78Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X78Y80         FDRE (Prop_fdre_C_Q)         0.164     1.675 r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[0]/Q
+                         net (fo=34, routed)          0.192     1.868    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg_n_0_[0]
+    SLICE_X80Y80         LUT5 (Prop_lut5_I1_O)        0.045     1.913 r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[28]_i_1__0/O
+                         net (fo=1, routed)           0.000     1.913    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[28]_i_1__0_n_0
+    SLICE_X80Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[28]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.699     1.136    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.864     2.029    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X80Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[28]/C
+                         clock pessimism             -0.479     1.549    
+    SLICE_X80Y80         FDRE (Hold_fdre_C_D)         0.121     1.670    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[28]
+  -------------------------------------------------------------------
+                         required time                         -1.670    
+                         arrival time                           1.913    
+  -------------------------------------------------------------------
+                         slack                                  0.242    
+
+Slack (MET) :             0.242ns  (arrival time - required time)
+  Source:                 EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[29]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.209ns (52.071%)  route 0.192ns (47.929%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.038ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.029ns
+    Source Clock Delay      (SCD):    1.511ns
+    Clock Pessimism Removal (CPR):    0.479ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.644     0.894    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.592     1.511    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X78Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X78Y80         FDRE (Prop_fdre_C_Q)         0.164     1.675 r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[0]/Q
+                         net (fo=34, routed)          0.192     1.868    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg_n_0_[0]
+    SLICE_X80Y80         LUT5 (Prop_lut5_I1_O)        0.045     1.913 r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[29]_i_1__0/O
+                         net (fo=1, routed)           0.000     1.913    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[29]_i_1__0_n_0
+    SLICE_X80Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[29]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.699     1.136    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.864     2.029    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X80Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[29]/C
+                         clock pessimism             -0.479     1.549    
+    SLICE_X80Y80         FDRE (Hold_fdre_C_D)         0.121     1.670    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[29]
+  -------------------------------------------------------------------
+                         required time                         -1.670    
+                         arrival time                           1.913    
+  -------------------------------------------------------------------
+                         slack                                  0.242    
+
+Slack (MET) :             0.258ns  (arrival time - required time)
+  Source:                 EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[3]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.365ns  (logic 0.184ns (50.364%)  route 0.181ns (49.636%))
+  Logic Levels:           1  (LUT4=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.037ns
-    Source Clock Delay      (SCD):    1.521ns
+    Destination Clock Delay (DCD):    2.029ns
+    Source Clock Delay      (SCD):    1.513ns
     Clock Pessimism Removal (CPR):    0.515ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -981,14 +1236,14 @@ Slack (MET) :             0.227ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
                          net (fo=21, routed)          0.644     0.894    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.602     1.521    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X87Y83         FDRE                                         r  EE_FileMod/stop_requests_reg[4]/C
+                         net (fo=175, routed)         0.594     1.513    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X81Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X87Y83         FDRE (Prop_fdre_C_Q)         0.141     1.662 r  EE_FileMod/stop_requests_reg[4]/Q
-                         net (fo=6, routed)           0.133     1.795    EE_MotorSimMod/stop_requests_reg[7]_1[4]
-    SLICE_X87Y83         LUT6 (Prop_lut6_I3_O)        0.045     1.840 r  EE_MotorSimMod/stop_requests[4]_i_1/O
-                         net (fo=1, routed)           0.000     1.840    EE_FileMod/stop_requests_reg[7]_1[4]
-    SLICE_X87Y83         FDRE                                         r  EE_FileMod/stop_requests_reg[4]/D
+    SLICE_X81Y80         FDRE (Prop_fdre_C_Q)         0.141     1.654 r  EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[0]/Q
+                         net (fo=5, routed)           0.181     1.836    EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg_n_0_[0]
+    SLICE_X81Y80         LUT4 (Prop_lut4_I2_O)        0.043     1.879 r  EE_MotorSimMod/__MotorSim_HelperDelay/counter[3]_i_2__0/O
+                         net (fo=1, routed)           0.000     1.879    EE_MotorSimMod/__MotorSim_HelperDelay/p_0_in__0[3]
+    SLICE_X81Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -998,30 +1253,30 @@ Slack (MET) :             0.227ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
                          net (fo=21, routed)          0.699     1.136    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.872     2.037    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X87Y83         FDRE                                         r  EE_FileMod/stop_requests_reg[4]/C
-                         clock pessimism             -0.515     1.521    
-    SLICE_X87Y83         FDRE (Hold_fdre_C_D)         0.092     1.613    EE_FileMod/stop_requests_reg[4]
+                         net (fo=175, routed)         0.864     2.029    EE_MotorSimMod/__MotorSim_HelperDelay/clk_IBUF_BUFG
+    SLICE_X81Y80         FDRE                                         r  EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[3]/C
+                         clock pessimism             -0.515     1.513    
+    SLICE_X81Y80         FDRE (Hold_fdre_C_D)         0.107     1.620    EE_MotorSimMod/__MotorSim_HelperDelay/counter_reg[3]
   -------------------------------------------------------------------
-                         required time                         -1.613    
-                         arrival time                           1.840    
+                         required time                         -1.620    
+                         arrival time                           1.879    
   -------------------------------------------------------------------
-                         slack                                  0.227    
+                         slack                                  0.258    
 
-Slack (MET) :             0.254ns  (arrival time - required time)
-  Source:                 EE_FSMMod/FSM_DelayMod/counter_reg[2]/C
+Slack (MET) :             0.258ns  (arrival time - required time)
+  Source:                 EE_FSMMod/FSM_DelayMod/counter_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            EE_FSMMod/FSM_DelayMod/counter_reg[3]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.361ns  (logic 0.190ns (52.621%)  route 0.171ns (47.379%))
+  Data Path Delay:        0.365ns  (logic 0.184ns (50.355%)  route 0.181ns (49.645%))
   Logic Levels:           1  (LUT4=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.038ns
-    Source Clock Delay      (SCD):    1.521ns
-    Clock Pessimism Removal (CPR):    0.516ns
+    Destination Clock Delay (DCD):    2.027ns
+    Source Clock Delay      (SCD):    1.512ns
+    Clock Pessimism Removal (CPR):    0.514ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1032,65 +1287,14 @@ Slack (MET) :             0.254ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
                          net (fo=21, routed)          0.644     0.894    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.602     1.521    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
-    SLICE_X82Y86         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[2]/C
+                         net (fo=175, routed)         0.593     1.512    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
+    SLICE_X85Y74         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X82Y86         FDRE (Prop_fdre_C_Q)         0.141     1.662 r  EE_FSMMod/FSM_DelayMod/counter_reg[2]/Q
-                         net (fo=3, routed)           0.171     1.833    EE_FSMMod/FSM_DelayMod/counter_reg_n_0_[2]
-    SLICE_X82Y86         LUT4 (Prop_lut4_I3_O)        0.049     1.882 r  EE_FSMMod/FSM_DelayMod/counter[3]_i_2__0/O
-                         net (fo=1, routed)           0.000     1.882    EE_FSMMod/FSM_DelayMod/p_0_in__0[3]
-    SLICE_X82Y86         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[3]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.699     1.136    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.873     2.038    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
-    SLICE_X82Y86         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[3]/C
-                         clock pessimism             -0.516     1.521    
-    SLICE_X82Y86         FDRE (Hold_fdre_C_D)         0.107     1.628    EE_FSMMod/FSM_DelayMod/counter_reg[3]
-  -------------------------------------------------------------------
-                         required time                         -1.628    
-                         arrival time                           1.882    
-  -------------------------------------------------------------------
-                         slack                                  0.254    
-
-Slack (MET) :             0.255ns  (arrival time - required time)
-  Source:                 EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[2]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.362ns  (logic 0.183ns (50.525%)  route 0.179ns (49.475%))
-  Logic Levels:           1  (LUT3=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.039ns
-    Source Clock Delay      (SCD):    1.522ns
-    Clock Pessimism Removal (CPR):    0.516ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.644     0.894    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.603     1.522    EE_MotorSimMod/__MS_MotorDelayMod/clk_IBUF_BUFG
-    SLICE_X85Y87         FDRE                                         r  EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X85Y87         FDRE (Prop_fdre_C_Q)         0.141     1.663 r  EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/Q
-                         net (fo=12, routed)          0.179     1.843    EE_MotorSimMod/__MS_MotorDelayMod/move_res_time[1]
-    SLICE_X85Y87         LUT3 (Prop_lut3_I2_O)        0.042     1.885 r  EE_MotorSimMod/__MS_MotorDelayMod/counter[2]_i_1/O
-                         net (fo=1, routed)           0.000     1.885    EE_MotorSimMod/__MS_MotorDelayMod/p_0_in[2]
-    SLICE_X85Y87         FDRE                                         r  EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[2]/D
+    SLICE_X85Y74         FDRE (Prop_fdre_C_Q)         0.141     1.653 r  EE_FSMMod/FSM_DelayMod/counter_reg[0]/Q
+                         net (fo=5, routed)           0.181     1.835    EE_FSMMod/FSM_DelayMod/counter_reg_n_0_[0]
+    SLICE_X85Y74         LUT4 (Prop_lut4_I2_O)        0.043     1.878 r  EE_FSMMod/FSM_DelayMod/counter[3]_i_2__1/O
+                         net (fo=1, routed)           0.000     1.878    EE_FSMMod/FSM_DelayMod/p_0_in__1[3]
+    SLICE_X85Y74         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1100,131 +1304,80 @@ Slack (MET) :             0.255ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
                          net (fo=21, routed)          0.699     1.136    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.874     2.039    EE_MotorSimMod/__MS_MotorDelayMod/clk_IBUF_BUFG
-    SLICE_X85Y87         FDRE                                         r  EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[2]/C
-                         clock pessimism             -0.516     1.522    
-    SLICE_X85Y87         FDRE (Hold_fdre_C_D)         0.107     1.629    EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[2]
+                         net (fo=175, routed)         0.862     2.027    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
+    SLICE_X85Y74         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[3]/C
+                         clock pessimism             -0.514     1.512    
+    SLICE_X85Y74         FDRE (Hold_fdre_C_D)         0.107     1.619    EE_FSMMod/FSM_DelayMod/counter_reg[3]
   -------------------------------------------------------------------
-                         required time                         -1.629    
-                         arrival time                           1.885    
-  -------------------------------------------------------------------
-                         slack                                  0.255    
-
-Slack (MET) :             0.263ns  (arrival time - required time)
-  Source:                 EE_FileMod/stop_requests_reg[2]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FileMod/stop_requests_reg[2]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.355ns  (logic 0.186ns (52.334%)  route 0.169ns (47.666%))
-  Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.034ns
-    Source Clock Delay      (SCD):    1.518ns
-    Clock Pessimism Removal (CPR):    0.515ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.644     0.894    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.599     1.518    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X86Y80         FDRE                                         r  EE_FileMod/stop_requests_reg[2]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X86Y80         FDRE (Prop_fdre_C_Q)         0.141     1.659 r  EE_FileMod/stop_requests_reg[2]/Q
-                         net (fo=6, routed)           0.169     1.829    EE_MotorSimMod/stop_requests_reg[7]_1[2]
-    SLICE_X86Y80         LUT6 (Prop_lut6_I2_O)        0.045     1.874 r  EE_MotorSimMod/stop_requests[2]_i_1/O
-                         net (fo=1, routed)           0.000     1.874    EE_FileMod/stop_requests_reg[7]_1[2]
-    SLICE_X86Y80         FDRE                                         r  EE_FileMod/stop_requests_reg[2]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.699     1.136    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.869     2.034    EE_FileMod/clk_IBUF_BUFG
-    SLICE_X86Y80         FDRE                                         r  EE_FileMod/stop_requests_reg[2]/C
-                         clock pessimism             -0.515     1.518    
-    SLICE_X86Y80         FDRE (Hold_fdre_C_D)         0.092     1.610    EE_FileMod/stop_requests_reg[2]
-  -------------------------------------------------------------------
-                         required time                         -1.610    
-                         arrival time                           1.874    
-  -------------------------------------------------------------------
-                         slack                                  0.263    
-
-Slack (MET) :             0.265ns  (arrival time - required time)
-  Source:                 EE_FSMMod/FSM_DelayMod/counter_reg[2]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FSMMod/FSM_DelayMod/counter_reg[2]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.357ns  (logic 0.186ns (52.090%)  route 0.171ns (47.910%))
-  Logic Levels:           1  (LUT3=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.038ns
-    Source Clock Delay      (SCD):    1.521ns
-    Clock Pessimism Removal (CPR):    0.516ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.644     0.894    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.602     1.521    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
-    SLICE_X82Y86         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[2]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X82Y86         FDRE (Prop_fdre_C_Q)         0.141     1.662 r  EE_FSMMod/FSM_DelayMod/counter_reg[2]/Q
-                         net (fo=3, routed)           0.171     1.833    EE_FSMMod/FSM_DelayMod/counter_reg_n_0_[2]
-    SLICE_X82Y86         LUT3 (Prop_lut3_I0_O)        0.045     1.878 r  EE_FSMMod/FSM_DelayMod/counter[2]_i_1__0/O
-                         net (fo=1, routed)           0.000     1.878    EE_FSMMod/FSM_DelayMod/p_0_in__0[2]
-    SLICE_X82Y86         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[2]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.699     1.136    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.873     2.038    EE_FSMMod/FSM_DelayMod/clk_IBUF_BUFG
-    SLICE_X82Y86         FDRE                                         r  EE_FSMMod/FSM_DelayMod/counter_reg[2]/C
-                         clock pessimism             -0.516     1.521    
-    SLICE_X82Y86         FDRE (Hold_fdre_C_D)         0.092     1.613    EE_FSMMod/FSM_DelayMod/counter_reg[2]
-  -------------------------------------------------------------------
-                         required time                         -1.613    
+                         required time                         -1.619    
                          arrival time                           1.878    
   -------------------------------------------------------------------
-                         slack                                  0.265    
+                         slack                                  0.258    
 
-Slack (MET) :             0.274ns  (arrival time - required time)
-  Source:                 EE_FSMMod/current_state_reg[0]/C
+Slack (MET) :             0.262ns  (arrival time - required time)
+  Source:                 EE_MotorSimMod/delay_enable_reg/C
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            EE_MotorSimMod/delay_enable_reg/D
+                            (falling edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin fall@5.000ns - sys_clk_pin fall@5.000ns)
+  Data Path Delay:        0.361ns  (logic 0.191ns (52.864%)  route 0.170ns (47.136%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.033ns = ( 7.033 - 5.000 ) 
+    Source Clock Delay      (SCD):    1.517ns = ( 6.517 - 5.000 ) 
+    Clock Pessimism Removal (CPR):    0.515ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.250     5.250 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.644     5.894    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     5.920 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.598     6.517    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X85Y80         FDRE                                         r  EE_MotorSimMod/delay_enable_reg/C  (IS_INVERTED)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X85Y80         FDRE (Prop_fdre_C_Q)         0.146     6.663 r  EE_MotorSimMod/delay_enable_reg/Q
+                         net (fo=2, routed)           0.170     6.834    EE_MotorSimMod/delay_enable
+    SLICE_X85Y80         LUT6 (Prop_lut6_I0_O)        0.045     6.879 r  EE_MotorSimMod/delay_enable_i_1/O
+                         net (fo=1, routed)           0.000     6.879    EE_MotorSimMod/delay_enable_i_1_n_0
+    SLICE_X85Y80         FDRE                                         r  EE_MotorSimMod/delay_enable_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin fall edge)
+                                                      5.000     5.000 f  
+    E3                                                0.000     5.000 f  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     5.438 f  clk_IBUF_inst/O
+                         net (fo=21, routed)          0.699     6.136    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     6.165 f  clk_IBUF_BUFG_inst/O
+                         net (fo=175, routed)         0.868     7.033    EE_MotorSimMod/clk_IBUF_BUFG
+    SLICE_X85Y80         FDRE                                         r  EE_MotorSimMod/delay_enable_reg/C  (IS_INVERTED)
+                         clock pessimism             -0.515     6.517    
+    SLICE_X85Y80         FDRE (Hold_fdre_C_D)         0.099     6.616    EE_MotorSimMod/delay_enable_reg
+  -------------------------------------------------------------------
+                         required time                         -6.616    
+                         arrival time                           6.879    
+  -------------------------------------------------------------------
+                         slack                                  0.262    
+
+Slack (MET) :             0.264ns  (arrival time - required time)
+  Source:                 __EE_SlowerClock/clkout_reg/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_FSMMod/current_state_reg[1]/D
+  Destination:            __EE_SlowerClock/clkout_reg/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.395ns  (logic 0.209ns (52.893%)  route 0.186ns (47.107%))
-  Logic Levels:           1  (LUT6=1)
+  Data Path Delay:        0.356ns  (logic 0.186ns (52.212%)  route 0.170ns (47.788%))
+  Logic Levels:           1  (LUT5=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.036ns
-    Source Clock Delay      (SCD):    1.520ns
+    Destination Clock Delay (DCD):    2.035ns
+    Source Clock Delay      (SCD):    1.519ns
     Clock Pessimism Removal (CPR):    0.515ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -1236,65 +1389,14 @@ Slack (MET) :             0.274ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
                          net (fo=21, routed)          0.644     0.894    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.601     1.520    EE_FSMMod/clk_IBUF_BUFG
-    SLICE_X84Y83         FDRE                                         r  EE_FSMMod/current_state_reg[0]/C
+                         net (fo=175, routed)         0.600     1.519    __EE_SlowerClock/clk_IBUF_BUFG
+    SLICE_X89Y81         FDRE                                         r  __EE_SlowerClock/clkout_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X84Y83         FDRE (Prop_fdre_C_Q)         0.164     1.684 r  EE_FSMMod/current_state_reg[0]/Q
-                         net (fo=11, routed)          0.186     1.870    EE_FSMMod/FSM_DelayMod/Q[0]
-    SLICE_X84Y83         LUT6 (Prop_lut6_I2_O)        0.045     1.915 r  EE_FSMMod/FSM_DelayMod/current_state[1]_i_1/O
-                         net (fo=1, routed)           0.000     1.915    EE_FSMMod/FSM_DelayMod_n_0
-    SLICE_X84Y83         FDRE                                         r  EE_FSMMod/current_state_reg[1]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.699     1.136    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.871     2.036    EE_FSMMod/clk_IBUF_BUFG
-    SLICE_X84Y83         FDRE                                         r  EE_FSMMod/current_state_reg[1]/C
-                         clock pessimism             -0.515     1.520    
-    SLICE_X84Y83         FDRE (Hold_fdre_C_D)         0.121     1.641    EE_FSMMod/current_state_reg[1]
-  -------------------------------------------------------------------
-                         required time                         -1.641    
-                         arrival time                           1.915    
-  -------------------------------------------------------------------
-                         slack                                  0.274    
-
-Slack (MET) :             0.274ns  (arrival time - required time)
-  Source:                 EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.365ns  (logic 0.186ns (50.931%)  route 0.179ns (49.069%))
-  Logic Levels:           1  (LUT2=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.039ns
-    Source Clock Delay      (SCD):    1.522ns
-    Clock Pessimism Removal (CPR):    0.516ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.644     0.894    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.603     1.522    EE_MotorSimMod/__MS_MotorDelayMod/clk_IBUF_BUFG
-    SLICE_X85Y87         FDRE                                         r  EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X85Y87         FDRE (Prop_fdre_C_Q)         0.141     1.663 r  EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/Q
-                         net (fo=12, routed)          0.179     1.843    EE_MotorSimMod/__MS_MotorDelayMod/move_res_time[1]
-    SLICE_X85Y87         LUT2 (Prop_lut2_I0_O)        0.045     1.888 r  EE_MotorSimMod/__MS_MotorDelayMod/counter[1]_i_1/O
-                         net (fo=1, routed)           0.000     1.888    EE_MotorSimMod/__MS_MotorDelayMod/p_0_in[1]
-    SLICE_X85Y87         FDRE                                         r  EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/D
+    SLICE_X89Y81         FDRE (Prop_fdre_C_Q)         0.141     1.660 r  __EE_SlowerClock/clkout_reg/Q
+                         net (fo=17, routed)          0.170     1.831    __EE_SlowerClock/ansel_reg[7]
+    SLICE_X89Y81         LUT5 (Prop_lut5_I4_O)        0.045     1.876 r  __EE_SlowerClock/clkout_i_1/O
+                         net (fo=1, routed)           0.000     1.876    __EE_SlowerClock/clkout_i_1_n_0
+    SLICE_X89Y81         FDRE                                         r  __EE_SlowerClock/clkout_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1304,119 +1406,15 @@ Slack (MET) :             0.274ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
                          net (fo=21, routed)          0.699     1.136    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.874     2.039    EE_MotorSimMod/__MS_MotorDelayMod/clk_IBUF_BUFG
-    SLICE_X85Y87         FDRE                                         r  EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/C
-                         clock pessimism             -0.516     1.522    
-    SLICE_X85Y87         FDRE (Hold_fdre_C_D)         0.091     1.613    EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]
+                         net (fo=175, routed)         0.870     2.035    __EE_SlowerClock/clk_IBUF_BUFG
+    SLICE_X89Y81         FDRE                                         r  __EE_SlowerClock/clkout_reg/C
+                         clock pessimism             -0.515     1.519    
+    SLICE_X89Y81         FDRE (Hold_fdre_C_D)         0.092     1.611    __EE_SlowerClock/clkout_reg
   -------------------------------------------------------------------
-                         required time                         -1.613    
-                         arrival time                           1.888    
+                         required time                         -1.611    
+                         arrival time                           1.876    
   -------------------------------------------------------------------
-                         slack                                  0.274    
-
-Slack (MET) :             0.280ns  (arrival time - required time)
-  Source:                 __EE_SlowerClock/counter_reg[15]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            __EE_SlowerClock/counter_reg[15]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.385ns  (logic 0.252ns (65.529%)  route 0.133ns (34.471%))
-  Logic Levels:           1  (CARRY4=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.042ns
-    Source Clock Delay      (SCD):    1.524ns
-    Clock Pessimism Removal (CPR):    0.517ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.644     0.894    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.605     1.524    __EE_SlowerClock/clk_IBUF_BUFG
-    SLICE_X86Y89         FDRE                                         r  __EE_SlowerClock/counter_reg[15]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X86Y89         FDRE (Prop_fdre_C_Q)         0.141     1.665 r  __EE_SlowerClock/counter_reg[15]/Q
-                         net (fo=2, routed)           0.133     1.798    __EE_SlowerClock/counter[15]
-    SLICE_X86Y89         CARRY4 (Prop_carry4_S[2]_O[2])
-                                                      0.111     1.909 r  __EE_SlowerClock/counter_reg[16]_i_1/O[2]
-                         net (fo=1, routed)           0.000     1.909    __EE_SlowerClock/counter_reg[16]_i_1_n_5
-    SLICE_X86Y89         FDRE                                         r  __EE_SlowerClock/counter_reg[15]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.699     1.136    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.877     2.042    __EE_SlowerClock/clk_IBUF_BUFG
-    SLICE_X86Y89         FDRE                                         r  __EE_SlowerClock/counter_reg[15]/C
-                         clock pessimism             -0.517     1.524    
-    SLICE_X86Y89         FDRE (Hold_fdre_C_D)         0.105     1.629    __EE_SlowerClock/counter_reg[15]
-  -------------------------------------------------------------------
-                         required time                         -1.629    
-                         arrival time                           1.909    
-  -------------------------------------------------------------------
-                         slack                                  0.280    
-
-Slack (MET) :             0.280ns  (arrival time - required time)
-  Source:                 __EE_SlowerClock/counter_reg[31]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            __EE_SlowerClock/counter_reg[31]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.385ns  (logic 0.252ns (65.529%)  route 0.133ns (34.471%))
-  Logic Levels:           1  (CARRY4=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.044ns
-    Source Clock Delay      (SCD):    1.526ns
-    Clock Pessimism Removal (CPR):    0.517ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.644     0.894    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.607     1.526    __EE_SlowerClock/clk_IBUF_BUFG
-    SLICE_X86Y93         FDRE                                         r  __EE_SlowerClock/counter_reg[31]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X86Y93         FDRE (Prop_fdre_C_Q)         0.141     1.667 r  __EE_SlowerClock/counter_reg[31]/Q
-                         net (fo=2, routed)           0.133     1.800    __EE_SlowerClock/counter[31]
-    SLICE_X86Y93         CARRY4 (Prop_carry4_S[2]_O[2])
-                                                      0.111     1.911 r  __EE_SlowerClock/counter_reg[31]_i_2/O[2]
-                         net (fo=1, routed)           0.000     1.911    __EE_SlowerClock/counter_reg[31]_i_2_n_5
-    SLICE_X86Y93         FDRE                                         r  __EE_SlowerClock/counter_reg[31]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
-                         net (fo=21, routed)          0.699     1.136    clk_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=136, routed)         0.879     2.044    __EE_SlowerClock/clk_IBUF_BUFG
-    SLICE_X86Y93         FDRE                                         r  __EE_SlowerClock/counter_reg[31]/C
-                         clock pessimism             -0.517     1.526    
-    SLICE_X86Y93         FDRE (Hold_fdre_C_D)         0.105     1.631    __EE_SlowerClock/counter_reg[31]
-  -------------------------------------------------------------------
-                         required time                         -1.631    
-                         arrival time                           1.911    
-  -------------------------------------------------------------------
-                         slack                                  0.280    
+                         slack                                  0.264    
 
 
 
@@ -1431,35 +1429,35 @@ Sources:            { clk }
 
 Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
 Min Period        n/a     BUFG/I   n/a            2.155         10.000      7.845      BUFGCTRL_X0Y16  clk_IBUF_BUFG_inst/I
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X80Y89    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[26]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X78Y89    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[27]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X78Y89    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[28]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X80Y89    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[29]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X78Y83    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[2]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X80Y89    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[30]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X78Y89    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[31]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X78Y83    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[3]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X80Y83    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[4]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X84Y88    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[1]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X86Y86    __EE_SlowerClock/counter_reg[1]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X86Y86    __EE_SlowerClock/counter_reg[2]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X86Y86    __EE_SlowerClock/counter_reg[3]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X86Y86    __EE_SlowerClock/counter_reg[4]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X82Y88    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[2]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X82Y88    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[3]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X82Y88    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[4]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X82Y88    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[5]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X82Y88    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[6]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X80Y83    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[4]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X78Y85    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[9]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X84Y81    EE_FileMod/down_requests_reg[1]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X84Y81    EE_FileMod/down_requests_reg[2]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X84Y91    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[12]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X84Y91    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[16]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X84Y91    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[17]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X82Y91    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[18]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X82Y91    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[19]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X82Y91    EE_MotorSimMod/__MS_MotorDelayMod/__divider_counter_reg[20]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X84Y73    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[27]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X82Y74    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[28]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X82Y75    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[29]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X82Y71    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[2]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X82Y75    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[30]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X82Y74    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[31]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X82Y71    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[3]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X82Y71    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[4]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X82Y71    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[5]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X82Y80    EE_MotorSimMod/__helper_delay_enable_reg/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X86Y85    EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[0]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X85Y80    EE_MotorSimMod/delay_enable_reg/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X84Y79    EE_MotorSimMod/position_reg[3]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X86Y85    EE_MotorSimMod/__MS_MotorDelayMod/counter_reg[1]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X85Y80    EE_MotorSimMod/moving_reg/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X86Y77    EE_FileMod/down_requests_reg[4]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X86Y77    EE_FileMod/down_requests_reg[5]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X86Y79    EE_FileMod/down_requests_reg[7]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X87Y79    EE_FileMod/up_requests_reg[2]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X87Y78    EE_FileMod/up_requests_reg[5]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X78Y78    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[14]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X78Y78    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[15]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X78Y78    EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter_reg[19]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X88Y78    __EE_SlowerClock/counter_reg[13]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X88Y78    __EE_SlowerClock/counter_reg[14]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X88Y78    __EE_SlowerClock/counter_reg[15]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X88Y78    __EE_SlowerClock/counter_reg[16]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X87Y78    EE_FileMod/stop_requests_reg[6]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X84Y73    EE_FSMMod/FSM_DelayMod/__divider_counter_reg[27]/C
 
 
 

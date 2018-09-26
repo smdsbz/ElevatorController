@@ -12,13 +12,12 @@ module ElevatorFiles
     input       [ n_floors - 1 : 0 ]    stop_buttons    ,
     input       [ n_floors - 1 : 0 ]    up_buttons      ,
     input       [ n_floors - 1 : 0 ]    down_buttons    ,
-    // Elevator FSM Signals
+    // Emulator Signals
     input       [ 3 : 0 ]               position        ,   // current position of the elevator (in range [1, 8])
     input                               open_up         ,   // elevator is opening for user wants to go up / down
     input                               open_down       ,   //     (open both if without more requests from up or down)
-    // Motor Emulator Input
     input                               moving          ,
-    // Indications
+    // Output Indications
     output wire                         stop_curr       ,   // user inside want's to stop at current floor
     output wire                         stop_up         ,   // user at current floor wants to go up / down
     output wire                         stop_down       ,
@@ -60,13 +59,13 @@ module ElevatorFiles
     always @ ( posedge clk ) begin
         if ( !power ) begin
             /* pass */
-            stop_requests   = 0;
-            up_requests     = 0;
-            down_requests   = 0;
+            stop_requests   <= 0;
+            up_requests     <= 0;
+            down_requests   <= 0;
         end else begin
-            stop_requests   = ( stop_requests | stop_buttons )  & ~( { 7'b0, (open_up | open_down) & ~moving } << offset );
-            up_requests     = ( up_requests | up_buttons )      & ~( { 7'b0, open_up & ~moving } << offset );
-            down_requests   = ( down_requests | down_buttons )  & ~( { 7'b0, open_down & ~moving } << offset );
+            stop_requests   <= ( stop_requests | stop_buttons ) & ~( { 7'b0, (open_up | open_down) } << offset );
+            up_requests     <= ( up_requests | up_buttons )     & ~( { 7'b0, open_up } << offset ); 
+            down_requests   <= ( down_requests | down_buttons ) & ~( { 7'b0, open_down } << offset );
         end
     end
 

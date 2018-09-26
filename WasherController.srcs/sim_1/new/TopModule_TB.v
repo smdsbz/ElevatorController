@@ -15,7 +15,7 @@ module TopModule_TB ();
     wire                    RGB_moving_down;
     wire                    RGB_moving_up;
 
-    ElevatorEmulator #(24) EE_Test (
+    ElevatorEmulator #(9) EE_Test (
         .clk        ( clk )             ,
         .sw         ( sw )              ,
         .btnL       ( btn_open_door )   ,
@@ -37,12 +37,18 @@ module TopModule_TB ();
         #0      clk     = 0;
         #0      { btn_open_door, btn_close_door }   = 0;
         #0      { btn_goup, btn_goto, btn_godown }  = 0;
-        #50     sw[2]   = 1;    // turn on power
-        #30     sw[3]   = 1;    // 2nd floor go-to request
+        #10     sw[2]       = 1;        // turn on power
+        #30     sw[5]       = 1;        // 3rd floor go-to request
         #10     btn_goto    = 1;
-        #5      btn_goto    = 0;
+        #10     btn_goto    = 0;
+        #10     sw[5]       = 0;
+        #10     { sw[3], sw[1] }    = 2'b11;    // 2nd floor go-up / go-down request
+        #10     btn_goup    = 1;                // 1st floor go-up request (go-down ignored)
+        #10     btn_godown  = 1;
+        #10     { btn_goup, btn_godown }    = 0;
+        #10     { sw[3], sw[1] }    = 0;
     end
-    
+
     always @ ( * ) begin
         #1  clk <= ~clk;
     end

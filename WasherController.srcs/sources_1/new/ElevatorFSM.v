@@ -5,7 +5,7 @@ module ElevatorFSM
 #(  parameter   n_floors            = 8             ,
     parameter   __half_sec_scale    = 49_999_999    )
 (   input                   clk         ,   // device clock
-    // User Contro
+    // User Control
     input                   power       ,   // [switch] power signal (release on HIGH)
     input                   door_open   ,   // [button] door open request signal
     input                   door_close  ,   // [button] door close signal, ignored when `door_open` is active
@@ -50,21 +50,24 @@ module ElevatorFSM
     always @ ( * ) begin
         if ( door_ctl ) begin   // door opened
             if ( more_up != more_down ) begin
-                if ( more_up ) begin
-                    open_up     = 1;
-                    open_down   = 0;
-                end else begin
-                    open_down   = 1;
-                    open_up     = 0;
-                end
+                open_up     = 1;
+                open_down   = 1;
             end else begin      // more_up == more_down
                 if ( more_up ) begin    // both == 1
                     if ( last_move ) begin  // last is up
                         open_up     = 1;
-                        open_down   = 0;
+                        if ( position == n_floors ) begin
+                            open_down   = 1;
+                        end else begin
+                            open_down   = 0;
+                        end
                     end else begin  // last is down
                         open_down   = 1;
-                        open_up     = 0;
+                        if ( position == 1) begin
+                            open_up     = 1;
+                        end else begin
+                            open_up     = 0;
+                        end
                     end
                 end else begin  // both == 0
                     open_up     = 1;
@@ -87,7 +90,7 @@ module ElevatorFSM
     end
 
     wire    need_to_stop;
-    assign  need_to_stop    = stop_curr | ( stop_up & last_move ) | ( stop_down & ~last_move );
+    assign  need_to_stop    = stop_curr | ( stop_up & ( last_move | ~more_down ) ) | ( stop_down & ( ~last_move | ~more_up ) );
 
     // FSM II - State transitions
     always @ ( * ) begin
@@ -200,7 +203,7 @@ module ElevatorFSM
                             end
                         end else begin
                             if ( more_up ) begin
-                                if ( position == 8 ) begin
+                                if ( position == 8 ) begin      // HACK: redundant design
                                     move_down   = 1;
                                     move_up     = 0;
                                     last_move   = 0;
@@ -237,16 +240,3 @@ module ElevatorFSM
     end
 
 endmodule
-
-
-
-
-
-
-
-
-
-
-
-
-

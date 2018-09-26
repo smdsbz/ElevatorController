@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Sun Sep 23 22:27:03 2018
+| Date         : Wed Sep 26 17:35:56 2018
 | Host         : DESKTOP-01D8GON running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file ElevatorEmulator_control_sets_placed.rpt
 | Design       : ElevatorEmulator
@@ -23,8 +23,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    24 |
-| Unused register locations in slices containing registers |   110 |
+| Number of unique control sets                            |    27 |
+| Unused register locations in slices containing registers |   112 |
 +----------------------------------------------------------+-------+
 
 
@@ -36,9 +36,10 @@ Table of Contents
 +--------+--------------+
 |      2 |           14 |
 |      4 |            1 |
-|      8 |            3 |
+|      6 |            1 |
+|      8 |            4 |
 |     14 |            1 |
-|    16+ |            5 |
+|    16+ |            6 |
 +--------+--------------+
 
 
@@ -48,45 +49,48 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               8 |            4 |
+| No           | No                    | No                     |              14 |            6 |
 | No           | No                    | Yes                    |              16 |            8 |
-| No           | Yes                   | No                     |             298 |           56 |
+| No           | Yes                   | No                     |             362 |           62 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              24 |            4 |
+| Yes          | Yes                   | No                     |              32 |            8 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+--------------------------------------------------+------------------------------------------------------+-------------------------------------------------------------+------------------+----------------+
-|                   Clock Signal                   |                     Enable Signal                    |                       Set/Reset Signal                      | Slice Load Count | Bel Load Count |
-+--------------------------------------------------+------------------------------------------------------+-------------------------------------------------------------+------------------+----------------+
-|  EE_FSMMod/next_position_reg[0]_P                |                                                      | EE_FSMMod/next_position_reg[0]_C_0                          |                1 |              2 |
-|  EE_FSMMod/next_position_reg[3]_P                |                                                      | EE_MotorSimMod/next_position_reg[3]_LDC_i_2_n_0             |                1 |              2 |
-|  EE_FSMMod/door_ctl_reg_i_2_n_0                  |                                                      |                                                             |                1 |              2 |
-|  EE_FileMod/next_position_reg[0]_C               |                                                      |                                                             |                1 |              2 |
-|  EE_MotorSimMod/next_position_reg[1]_LDC_i_1_n_0 |                                                      | EE_MotorSimMod/next_position_reg[1]_LDC_i_2_n_0             |                1 |              2 |
-|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                      | EE_FSMMod/next_position_reg[0]_P                            |                1 |              2 |
-|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                      | EE_FSMMod/next_position_reg[3]_P                            |                1 |              2 |
-|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                      | EE_FSMMod/next_position_reg[0]_C_0                          |                1 |              2 |
-|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                      | EE_MotorSimMod/next_position_reg[1]_LDC_i_1_n_0             |                1 |              2 |
-|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                      | EE_MotorSimMod/next_position_reg[3]_LDC_i_2_n_0             |                1 |              2 |
-|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                      | EE_MotorSimMod/next_position_reg[1]_LDC_i_2_n_0             |                1 |              2 |
-|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                      | EE_MotorSimMod/next_position_reg[2]_LDC_i_1_n_0             |                1 |              2 |
-|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                      | EE_MotorSimMod/next_position_reg[2]_LDC_i_2_n_0             |                1 |              2 |
-|  EE_MotorSimMod/next_position_reg[2]_LDC_i_1_n_0 |                                                      | EE_MotorSimMod/next_position_reg[2]_LDC_i_2_n_0             |                1 |              2 |
-|  clk_IBUF_BUFG                                   |                                                      |                                                             |                2 |              4 |
-|  clk_IBUF_BUFG                                   | EE_FSMMod/FSM_DelayMod/counter[3]_i_1__0_n_0         | EE_FSMMod/FSM_DelayMod/clear                                |                1 |              8 |
-|  clk_IBUF_BUFG                                   | EE_MotorSimMod/__MS_MotorDelayMod/E[0]               | EE_MotorSimMod/position[3]_i_1_n_0                          |                2 |              8 |
-|  clk_IBUF_BUFG                                   | EE_MotorSimMod/__MS_MotorDelayMod/counter[3]_i_1_n_0 | EE_MotorSimMod/__MS_MotorDelayMod/EE_FileMod/stop_requests4 |                1 |              8 |
-|  sw_IBUF_BUFG[2]                                 |                                                      | EE_FileMod/SR[0]                                            |                3 |             14 |
-|  __EE_SlowerClock/ansel_reg[7]                   |                                                      | EE_FileMod/SR[0]                                            |                5 |             32 |
-|  clk_IBUF_BUFG                                   |                                                      | EE_FileMod/SR[0]                                            |               15 |             50 |
-|  clk_IBUF_BUFG                                   |                                                      | __EE_SlowerClock/clkout                                     |                8 |             62 |
-|  clk_IBUF_BUFG                                   |                                                      | EE_FSMMod/FSM_DelayMod/clear                                |               12 |             66 |
-|  clk_IBUF_BUFG                                   |                                                      | EE_MotorSimMod/__MS_MotorDelayMod/EE_FileMod/stop_requests4 |                9 |             66 |
-+--------------------------------------------------+------------------------------------------------------+-------------------------------------------------------------+------------------+----------------+
++--------------------------------------------------+-------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+
+|                   Clock Signal                   |                        Enable Signal                        |                            Set/Reset Signal                            | Slice Load Count | Bel Load Count |
++--------------------------------------------------+-------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+
+|  EE_FSMMod/door_ctl_reg_i_2_n_0                  |                                                             |                                                                        |                1 |              2 |
+|  EE_FileMod/next_position_reg[0]_C               |                                                             |                                                                        |                1 |              2 |
+|  EE_MotorSimMod/next_position_reg[1]_LDC_i_1_n_0 |                                                             | EE_MotorSimMod/next_position_reg[1]_LDC_i_2_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position_reg[3]_LDC_i_1_n_0 |                                                             | EE_MotorSimMod/next_position_reg[3]_LDC_i_2_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position_reg[0]_LDC_i_1_n_0 |                                                             | EE_MotorSimMod/next_position_reg[0]_LDC_i_2_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                             | EE_MotorSimMod/next_position_reg[1]_LDC_i_1_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                             | EE_MotorSimMod/next_position_reg[2]_LDC_i_2_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                             | EE_MotorSimMod/next_position_reg[0]_LDC_i_2_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                             | EE_MotorSimMod/next_position_reg[3]_LDC_i_1_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                             | EE_MotorSimMod/next_position_reg[3]_LDC_i_2_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                             | EE_MotorSimMod/next_position_reg[0]_LDC_i_1_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                             | EE_MotorSimMod/next_position_reg[1]_LDC_i_2_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position[3]_C_i_2_n_0       |                                                             | EE_MotorSimMod/next_position_reg[2]_LDC_i_1_n_0                        |                1 |              2 |
+|  EE_MotorSimMod/next_position_reg[2]_LDC_i_1_n_0 |                                                             | EE_MotorSimMod/next_position_reg[2]_LDC_i_2_n_0                        |                1 |              2 |
+|  clk_IBUF_BUFG                                   |                                                             |                                                                        |                2 |              4 |
+| ~clk_IBUF_BUFG                                   |                                                             |                                                                        |                2 |              6 |
+|  clk_IBUF_BUFG                                   | EE_FSMMod/FSM_DelayMod/counter[3]_i_1__1_n_0                | EE_FSMMod/FSM_DelayMod/__divider_counter[31]_i_1__1_n_0                |                1 |              8 |
+|  clk_IBUF_BUFG                                   | EE_MotorSimMod/__MS_MotorDelayMod/counter[3]_i_1_n_0        | EE_MotorSimMod/__MS_MotorDelayMod/clear                                |                2 |              8 |
+|  clk_IBUF_BUFG                                   | EE_MotorSimMod/__MotorSim_HelperDelay/counter[3]_i_1__0_n_0 | EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[31]_i_1__0_n_0 |                1 |              8 |
+| ~clk_IBUF_BUFG                                   | EE_MotorSimMod/__MS_MotorDelayMod/E[0]                      | EE_MotorSimMod/position[3]_i_1_n_0                                     |                4 |              8 |
+|  sw_IBUF_BUFG[2]                                 |                                                             | EE_FileMod/SR[0]                                                       |                4 |             14 |
+|  __EE_SlowerClock/ansel_reg[7]                   |                                                             | EE_FileMod/SR[0]                                                       |                5 |             32 |
+|  clk_IBUF_BUFG                                   |                                                             | EE_FileMod/SR[0]                                                       |               14 |             48 |
+|  clk_IBUF_BUFG                                   |                                                             | __EE_SlowerClock/clkout                                                |                8 |             62 |
+|  clk_IBUF_BUFG                                   |                                                             | EE_FSMMod/FSM_DelayMod/__divider_counter[31]_i_1__1_n_0                |                9 |             66 |
+|  clk_IBUF_BUFG                                   |                                                             | EE_MotorSimMod/__MS_MotorDelayMod/clear                                |                8 |             66 |
+|  clk_IBUF_BUFG                                   |                                                             | EE_MotorSimMod/__MotorSim_HelperDelay/__divider_counter[31]_i_1__0_n_0 |               10 |             66 |
++--------------------------------------------------+-------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+
 
 

@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../WasherController.srcs/sources_1/new/BinaryToBCDConverter.v" \
+"../../../../WasherController.srcs/sources_1/imports/sources_1/new/Clock.v" \
+"../../../../WasherController.srcs/sources_1/new/ElevatorEmulator.v" \
+"../../../../WasherController.srcs/sources_1/new/ElevatorFSM.v" \
+"../../../../WasherController.srcs/sources_1/new/ElevatorFiles.v" \
+"../../../../WasherController.srcs/sources_1/new/MotorSimulator.v" \
+"../../../../WasherController.srcs/sources_1/new/SevenSegDisplay.v" \
+"../../../../WasherController.srcs/sim_1/new/TopModule_Bug_TB.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

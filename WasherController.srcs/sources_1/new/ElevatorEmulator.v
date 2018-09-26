@@ -44,12 +44,9 @@ module ElevatorEmulator
         end
     endgenerate
     assign  floor_sel_mod   = { goup_modif, stopat_modif, godown_modif };
-    assign  godown_buttons  = (floor_sel_mod == 3'b001) ?
-                                { floor_sel[7:1], 1'b0 } : 8'b0;
-    assign  stopat_buttons  = (floor_sel_mod == 3'b010) ?
-                                floor_sel : 8'b0;
-    assign  goup_buttons    = (floor_sel_mod == 3'b100) ?
-                                { 1'b0, floor_sel[6:0] } : 8'b0;
+    assign  godown_buttons  = ( godown_modif ) ? { floor_sel[7:1], 1'b0 } : 8'b0;
+    assign  stopat_buttons  = ( stopat_modif ) ? floor_sel : 8'b0;
+    assign  goup_buttons    = ( goup_modif ) ? { 1'b0, floor_sel[6:0] } : 8'b0;
 
     // Output State Indications
     assign  RGB1_Green  = clk & door_ind;
@@ -88,7 +85,7 @@ module ElevatorEmulator
     assign  RGB2_Blue   = clk & ( moving & last_move );
     assign  RGB2_Green  = clk & ( moving & ~last_move );
 
-    MotorSimulator #(12, __half_sec_scale) EE_MotorSimMod (
+    MotorSimulator #(10, __half_sec_scale) EE_MotorSimMod (
         .power      ( power )           ,
         .clk        ( clk )             ,
         .move_up    ( move_up )         ,
@@ -121,10 +118,10 @@ module ElevatorEmulator
         // System Input
         .clk            ( clk )         ,
         .power          ( power )       ,
-        // User Contor
+        // User Control
         .door_open      ( door_open )   ,
         .door_close     ( door_close )  ,
-        // File Inpu
+        // File Input
         .stop_curr      ( stop_curr )   ,
         .stop_up        ( stop_up )     ,
         .stop_down      ( stop_down )   ,

@@ -1,0 +1,12 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/smdsbz/Projects/WasherController/WasherController.sim/sim_1/impl/timing/xsim/TopModule_Bug_TB_time_impl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ClockSignal1S
+INFO: [VRFC 10-311] analyzing module DelaySignalNS
+INFO: [VRFC 10-311] analyzing module DelaySignalNS__parameterized0
+INFO: [VRFC 10-311] analyzing module DisplayInterfaceDriver
+INFO: [VRFC 10-311] analyzing module ElevatorEmulator
+INFO: [VRFC 10-311] analyzing module ElevatorFSM
+INFO: [VRFC 10-311] analyzing module ElevatorFiles
+INFO: [VRFC 10-311] analyzing module MotorSimulator
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/smdsbz/Projects/WasherController/WasherController.srcs/sim_1/new/TopModule_Bug_TB.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TopModule_Bug_TB
